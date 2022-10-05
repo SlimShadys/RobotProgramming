@@ -1,0 +1,364 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/base_sensor_message.cpp
+base_sensor_message.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/base_sensor_message.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/base_sensor_message.h
+string
+-
+iostream
+-
+memory
+-
+utils/property_container.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/utils/property_container.h
+geometry/geometry_defs.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/geometry/geometry_defs.h
+geometry/geometry3d.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/geometry/geometry3d.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/odometry_message.cpp
+odometry_message.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/odometry_message.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/odometry_message.h
+base_sensor_message.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/base_sensor_message.h
+utils/property_eigen.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/utils/property_eigen.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/pose_message.cpp
+pose_message.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/pose_message.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/pose_message.h
+utils/property_container.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/utils/property_container.h
+utils/property_eigen.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/utils/property_eigen.h
+geometry/geometry_defs.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/geometry/geometry_defs.h
+geometry/geometry3d.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/geometry/geometry3d.h
+geometry/geometry2d.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/messages/geometry/geometry2d.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/blob.cpp
+memory
+-
+blob.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/blob.h
+object_data.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/object_data.h
+serialization_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serialization_context.h
+id_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_context.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/blob.h
+string
+-
+iostream
+-
+fstream
+-
+memory
+-
+Eigen/Core
+-
+identifiable.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/identifiable.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/deserializer.cpp
+fstream
+-
+memory
+-
+stdexcept
+-
+deserializer.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/deserializer.h
+id_placeholder.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_placeholder.h
+identifiable.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/identifiable.h
+object_data.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/object_data.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/deserializer.h
+map
+-
+set
+-
+vector
+-
+istream
+-
+string
+-
+id_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_context.h
+serialization_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serialization_context.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_context.cpp
+id_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_context.h
+identifiable.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/identifiable.h
+id_placeholder.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_placeholder.h
+stdexcept
+-
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_context.h
+serialization_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serialization_context.h
+map
+-
+mutex
+-
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_placeholder.cpp
+id_placeholder.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_placeholder.h
+id_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_context.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_placeholder.h
+vector
+-
+memory
+-
+identifiable.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/identifiable.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/identifiable.cpp
+stdexcept
+-
+sstream
+-
+identifiable.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/identifiable.h
+id_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_context.h
+object_data.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/object_data.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/identifiable.h
+memory
+-
+serializable.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serializable.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/object_data.cpp
+stdexcept
+-
+sstream
+-
+object_data.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/object_data.h
+id_placeholder.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_placeholder.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/object_data.h
+string
+-
+vector
+-
+map
+-
+limits
+-
+stdexcept
+-
+id_placeholder.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_placeholder.h
+Eigen/Core
+-
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property.cpp
+cassert
+-
+iostream
+-
+id_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_context.h
+object_data.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/object_data.h
+property.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property.h
+property_container.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_container.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property.h
+cassert
+-
+memory
+-
+set
+-
+Eigen/Core
+-
+property_macros.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_macros.h
+object_data.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/object_data.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_container.cpp
+cassert
+-
+iostream
+-
+property.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property.h
+property_container.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_container.h
+deserializer.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/deserializer.h
+serializer.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serializer.h
+property_container_manager.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_container_manager.h
+property_identifiable.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_identifiable.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_container.h
+property.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_container_manager.cpp
+cassert
+-
+dlfcn.h
+-
+gnu/lib-names.h
+-
+iostream
+-
+deserializer.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/deserializer.h
+serializer.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serializer.h
+property_container_manager.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_container_manager.h
+property_identifiable.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_identifiable.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_container_manager.h
+property_container.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_container.h
+property_vector.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_vector.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_eigen.cpp
+property_eigen.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_eigen.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_eigen.h
+Eigen/Core
+-
+property.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_identifiable.cpp
+property_identifiable.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_identifiable.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_identifiable.h
+property.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property.h
+property_container.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_container.h
+property_vector.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_vector.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_macros.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property_vector.h
+sstream
+-
+property.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/property.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serializable.cpp
+stdexcept
+-
+typeinfo
+-
+sys/time.h
+-
+serializable.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serializable.h
+object_data.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/object_data.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serializable.h
+map
+-
+memory
+-
+string
+-
+vector
+-
+iostream
+-
+typeinfo
+-
+trusted_loaders.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/trusted_loaders.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serialization_context.cpp
+ctime
+-
+sstream
+-
+serialization_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serialization_context.h
+serializer.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serializer.h
+sys/types.h
+-
+sys/stat.h
+-
+dirent.h
+-
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serialization_context.h
+string
+-
+iostream
+-
+blob.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/blob.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serializer.cpp
+ctime
+-
+sstream
+-
+serializer.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serializer.h
+object_data.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/object_data.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serializer.h
+string
+-
+serialization_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/serialization_context.h
+id_context.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/id_context.h
+blob.h
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/blob.h
+
+/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/src/utils/trusted_loaders.h
+

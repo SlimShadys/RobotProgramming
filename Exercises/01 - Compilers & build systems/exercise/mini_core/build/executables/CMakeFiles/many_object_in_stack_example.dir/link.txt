@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/many_object_in_stack_example.dir/many_object_in_stack_example.cpp.o  -o many_object_in_stack_example 

@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(mini_core)
 
+# Add project source code
+add_subdirectory(src)
+
+# Add executable source code
+add_subdirectory(executables)
+
 # signature_of_eigen3_matrix_library is just there as a signature to help identify directories containing Eigen3. 
 # when writing a script looking for Eigen3, just look for this file. This is especially useful to help disambiguate with Eigen2...
 
@@ -15,11 +21,7 @@ if( NOT EIGEN3_INCLUDE_DIR )
      message( FATAL_ERROR "Please point the environment variable EIGEN3_INCLUDE_DIR to the include directory of your Eigen3 installation!")
 endif()
 
+# This invokes the routines to find a package called Eigen3
+find_package(Eigen3 REQUIRED)
 
-# TODO invokes the routines to find a package called Eigen3
-
-# TODO specify additional locations of header files
-
-# add project source code
-add_subdirectory(src)
-# TODO do the same for executables
+# Specify additional locations of header files
