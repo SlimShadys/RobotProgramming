@@ -1,8 +1,0 @@
-/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/build/CMakeFiles/rebuild_cache.dir
-/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/build/CMakeFiles/edit_cache.dir
-/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/build/src/CMakeFiles/rebuild_cache.dir
-/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/build/src/CMakeFiles/edit_cache.dir
-/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/build/src/CMakeFiles/core_library.dir
-/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/build/executables/CMakeFiles/rebuild_cache.dir
-/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/build/executables/CMakeFiles/edit_cache.dir
-/home/slimshadys/Università/Personal/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/build/executables/CMakeFiles/many_object_in_stack_example.dir

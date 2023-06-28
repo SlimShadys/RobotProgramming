@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
+
+# Here we specify our project
 project(mini_core)
 
 # signature_of_eigen3_matrix_library is just there as a signature to help identify directories containing Eigen3. 
@@ -10,6 +12,7 @@ find_path(EIGEN3_INCLUDE_DIR signature_of_eigen3_matrix_library
   /usr/local/include/eigen3
 )
 
+# We want to include eigen3 into /src
 include_directories(/usr/include/eigen3 src/)
 
 # check if variable is populated previously
@@ -20,11 +23,7 @@ endif()
 # This invokes the routines to find a package called Eigen3
 find_package(Eigen3 REQUIRED)
 
-# TODO specify additional locations of header files
-
-
 # add project source code
+# We specify that inside src/ and executables/, CMake has to look for CMakeLists.txt
 add_subdirectory(src)
-
-# Add executable source code
 add_subdirectory(executables)
