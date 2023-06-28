@@ -2,20 +2,21 @@
 using namespace std; // we will discover this later
 
 // classes (and structs) can be extended
-
 struct A {
   int my_value;
   A(int v) {
-    cerr << "A [" << this << "]" << " ctor" << endl;
+    // This prints the address of the object
+    // ctor just stands for "constructor"
+    cerr << "A [" << this << "] ctor" << endl;
     my_value=v;
   }
 
   ~A(){
-    cerr << "A [" << this << "]" << " dtor" << endl;
+    cerr << "A [" << this << "] dtor" << endl;
   }
 
   void print() {
-    cerr << "A::print() [" << this << "]: my_value=" << my_value << endl;
+    cerr << "A::print() [" << this << "]: my_value = " << my_value << endl;
   }
 };
 
@@ -34,7 +35,7 @@ struct B: public A {
   }
 
   ~B(){
-    cerr << "B [" << this << "]" << " dtor" << endl;
+    cerr << "B [" << this << "] dtor" << endl;
   }
 
   void print() {
@@ -45,7 +46,6 @@ struct B: public A {
 };
 
 int main(int argc, char** argv) {
-  cerr << endl;
   cerr << "create A " << endl;
   A a(3);
   a.print();
@@ -58,4 +58,3 @@ int main(int argc, char** argv) {
   A a1=b; 
   a1.print();
 }
-

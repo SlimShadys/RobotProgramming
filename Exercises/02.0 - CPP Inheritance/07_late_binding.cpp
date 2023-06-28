@@ -12,8 +12,8 @@ using namespace std; // we will discover this later
 // simple (non late binding example)
 class A {
 public:
-  A(int value_):
-    _value(value_){
+  A(int valueFromConstructor):
+    _value(valueFromConstructor){
   }
   void print() {
     cerr << "A: [" << this << "], value: " << _value << endl;
@@ -24,20 +24,18 @@ protected:
 
 class B: public A {
 public:
-  B(int value_):
-    A(value_) {}
+  B(int valueFromConstructor):
+    A(valueFromConstructor) {}
   void print(){
     cerr << "B: [" << this << "], value: " << _value << endl;
   }
 };
 
-
-
 // simple (late binding example)
 class A_lb {
 public:
-  A_lb(int value_):
-    _value(value_){
+  A_lb(int valueFromConstructor):
+    _value(valueFromConstructor){
   }
   virtual void print() {
     cerr << "A_lb: [" << this << "], value: " << _value << endl;
@@ -48,17 +46,19 @@ protected:
 
 class B_lb: public A_lb {
 public:
-  B_lb(int value_):
-    A_lb(value_) {}
+  B_lb(int valueFromConstructor):
+    A_lb(valueFromConstructor) {}
   void print() override {
     cerr << "B_lb: [" << this << "], value: " << _value << endl;
   }
 };
 
+// ---------------------------------------------- //
 
-  
 int main(int argc, char ** argv) {
-  cerr <<  "no late binding" << endl;
+  cerr << "No late binding" << endl;
+
+  // Local scope. We want this variables to be just inside this piece of code
   {
     B b(10);
     A& a_ref=b;
@@ -66,7 +66,8 @@ int main(int argc, char ** argv) {
     a_ref.print();
   }
 
-  cerr <<  "late binding" << endl;
+  cerr <<  "---------------------" << endl;
+  cerr <<  "Late binding" << endl;
   {          
     B_lb b(10);
     A_lb& a_ref(b);
