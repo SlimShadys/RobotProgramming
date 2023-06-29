@@ -57,8 +57,5 @@ void Lidar::draw() {
     IntPoint epi=world->world2grid(p_world);
     cv::line(world->_display_image, cv::Point(origin.y, origin.x), cv::Point(epi.y, epi.x), cv::Scalar(127,127,127), 1);
     alpha += d_alpha;
-  }
-
-    
+  }   
 }
-  

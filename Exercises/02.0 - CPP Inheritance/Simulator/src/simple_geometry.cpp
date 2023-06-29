@@ -6,7 +6,6 @@ ostream& operator << (ostream& os, const Point& p) {
   return os;
 }
 
-
 ostream& operator << (ostream& os, const IntPoint& p) {
   os << p.x << " " << p.y;
   return os;

@@ -9,6 +9,9 @@
 #include "simple_geometry.h"
 #include "world.h"
 
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
+
 using namespace std;
 
 double timeMillisec() {
@@ -19,7 +22,9 @@ double timeMillisec() {
 
 int main(int argc, char** argv) {
   World w;
-  w.loadFromImage(argv[1]);
+  //w.loadFromImage(argv[1]);
+  // We load it manually for G++. Not needed when we use CMake
+  w.loadFromImage("/home/lattinone/RobotProgramming/Exercises/02.0 - CPP Inheritance/Simulator/src/background.png");
 
   IntPoint middle(w.rows / 2, w.cols / 2);
   Pose robot_pose;
@@ -33,28 +38,23 @@ int main(int argc, char** argv) {
   int k;
 
   while (1) {
-    double t_start = timeMillisec();
     w.timeTick(delay);
-    double t_end = timeMillisec();
-    cerr << "duration" << t_end - t_start << endl;
-    cerr << "image_size: " << w.rows << " " << w.cols << endl;
-    w.draw();
+    w.draw(r.rv, r.tv);
 
-    // k=cv::waitKeyEx(delay*1000)&255;
-    k = cv::waitKeyEx(0) & 255;
+    k=cv::waitKeyEx(delay*1000)&255;
     switch (k) {
       case 81:
         r.rv += 0.05;
-        break;  // arow left
+        break;  // arrow left
       case 82:
         r.tv += 0.1;
-        break;  // arow up
+        break;  // arrow up
       case 83:
         r.rv -= 0.05;
-        break;  // arow right
+        break;  // arrow right
       case 84:
         r.tv -= 0.1;
-        break;  // arow dw
+        break;  // arrow dw
       case 32:
         r.tv = 0;
         r.rv = 0;
@@ -63,6 +63,8 @@ int main(int argc, char** argv) {
         return 0;  // space
       default:;
     }
-    cerr << "k: " << (int)k << endl;
+    cerr << "Rotation velocity    : " << r.rv << endl;
+    cerr << "Translation velocity : " << r.tv << endl;
+    cerr << "-------------------------" << endl;
   }
 }

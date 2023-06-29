@@ -35,7 +35,7 @@ class World {
   bool traverseBeam(IntPoint& endpoint, const IntPoint& origin,
                     const float angle, const int max_range);
 
-  void draw();
+  void draw(float rotationV, float translationV);
   void timeTick(float dt);
   bool add(WorldItem& item);
 

@@ -1,0 +1,3 @@
+/home/lattinone/RobotProgramming/Exercises/02.0 - CPP Inheritance/Simulator/out/CMakeFiles/rebuild_cache.dir
+/home/lattinone/RobotProgramming/Exercises/02.0 - CPP Inheritance/Simulator/out/CMakeFiles/edit_cache.dir
+/home/lattinone/RobotProgramming/Exercises/02.0 - CPP Inheritance/Simulator/out/CMakeFiles/main.dir

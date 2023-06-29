@@ -14,9 +14,7 @@ RobotBase::RobotBase(float radius_, WorldItem* p_, const Pose& pose_)
 void RobotBase::draw() {
   int int_radius = radius * world->inv_res;
   int r2 = int_radius * int_radius;
-  cerr << "r2 = " << r2;
   IntPoint p = world->world2grid(poseInWorld().translation);
-  cerr << "origin = " << p << endl;
   for (int r = -int_radius; r <= int_radius; ++r) {
     for (int c = -int_radius; c <= int_radius; ++c) {
       IntPoint off(r, c);
