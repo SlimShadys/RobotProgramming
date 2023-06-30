@@ -1,3 +1,6 @@
 # Ignore VS Code
 **/.vscode*/
 
+# Ignore the /out directories
+**/out/
+

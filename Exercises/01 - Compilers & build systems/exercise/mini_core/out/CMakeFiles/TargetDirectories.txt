@@ -1,8 +1,0 @@
-/home/lattinone/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/out/CMakeFiles/rebuild_cache.dir
-/home/lattinone/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/out/CMakeFiles/edit_cache.dir
-/home/lattinone/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/out/src/CMakeFiles/rebuild_cache.dir
-/home/lattinone/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/out/src/CMakeFiles/edit_cache.dir
-/home/lattinone/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/out/src/CMakeFiles/core_library.dir
-/home/lattinone/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/out/executables/CMakeFiles/rebuild_cache.dir
-/home/lattinone/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/out/executables/CMakeFiles/edit_cache.dir
-/home/lattinone/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/out/executables/CMakeFiles/many_object_in_stack_example.dir

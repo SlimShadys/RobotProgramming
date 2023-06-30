@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/many_object_in_stack_example.dir/many_object_in_stack_example.cpp.o  -o many_object_in_stack_example  -Wl,-rpath,"/home/lattinone/RobotProgramming/Exercises/01 - Compilers & build systems/exercise/mini_core/out/src" ../src/libcore_library.so 
