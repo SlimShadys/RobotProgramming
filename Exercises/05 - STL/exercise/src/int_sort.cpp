@@ -12,9 +12,17 @@ int main(int argc, char** argv) {
   assert(argc > 1);
   ifstream is(argv[1]);
   IntVector values;
+
   while (is) {
-    // TODO: load the values
+    int num = 0;
+    is >> num;
+    values.push_back(num);
   }
-  std::sort(values.begin(), values.end());
-  // TODO: print the values
+
+  std::sort(values.begin(), values.end()); // Standard sort
+
+  // Print values
+  for (auto val: values) {
+    cout << "Val: " << val << endl;
+  }
 }
