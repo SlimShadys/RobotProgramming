@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbtree_library.a  CMakeFiles/btree_library.dir/btree.cpp.o
+/usr/bin/ranlib libbtree_library.a

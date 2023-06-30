@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lattinone/RobotProgramming/Exercises/03 - CPP Templates/exercise/src/linalg/vec_f.cpp
+vec_f.h
+/home/lattinone/RobotProgramming/Exercises/03 - CPP Templates/exercise/src/linalg/vec_f.h
+iostream
+-
+assert.h
+-
+
+/home/lattinone/RobotProgramming/Exercises/03 - CPP Templates/exercise/src/linalg/vec_f.h
+iostream
+-
+

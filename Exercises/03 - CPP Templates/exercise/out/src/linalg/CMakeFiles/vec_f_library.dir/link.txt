@@ -1,0 +1,2 @@
+/usr/bin/ar qc libvec_f_library.a  CMakeFiles/vec_f_library.dir/vec_f.cpp.o
+/usr/bin/ranlib libvec_f_library.a
