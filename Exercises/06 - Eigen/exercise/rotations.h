@@ -37,5 +37,5 @@ inline Eigen::Matrix3f Rz(float theta) {
 
 
 inline Eigen::Matrix3f Rxyz(const Eigen::Vector3f& a) {
-  return Rx(a.x())* Ry(a.y()) * Rz(a.z());
+  return Rx(a.x()) * Ry(a.y()) * Rz(a.z());
 }

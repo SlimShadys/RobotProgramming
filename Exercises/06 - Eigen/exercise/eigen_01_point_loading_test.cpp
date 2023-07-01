@@ -46,8 +46,10 @@ int main(int argc, char** argv) {
         cerr << "Sorting 2D points" << endl;
         //is.open("test_data/points_3d.dat");
         is.open(argv[1]);
+        
         num_points2D = loadPoints(points2D, is, 2);
-        cerr << "I read " << num_points2D << " points from the stream " << endl;
+        cerr << "I read " << num_points2D * 2 << " points from the stream.\n" << endl;
+
         savePoints(std::cout, points2D);
 
         // Sorting the points2D list based on the comparison formula
@@ -70,9 +72,11 @@ int main(int argc, char** argv) {
         cerr << "Sorting 3D points" << endl;
         //is.open("test_data/points_3d.dat");
         is.open(argv[1]);
+
         num_points3D = loadPoints(points3D, is, 3);
-        cerr << "I read " << num_points3D << " points from the stream " << endl;
-        savePoints(std::cerr, points3D);
+        cerr << "I read " << num_points3D * 3 << " points from the stream.\n" << endl;
+
+        savePoints(std::cout, points3D);
 
         // Sorting the points3D list based on the comparison formula
         points3D.sort(compareVectors3D);
