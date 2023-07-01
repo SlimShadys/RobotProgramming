@@ -25,28 +25,25 @@ struct TreeNode_{
   PtrType insert(const ValueType& value_) {
     if (_compare(value_, _value)) {
       if (! _left) {
-        // _left=0;
-        // Todo: assign to left with a unique ptr holding a new tree
-        // that has value_ as root
+        _left = PtrType(new TreeNode_(value_, _left=0));
         return _left;
       }
       return _left->insert(value_);
     }
     if (_compare(_value, value_)) {
       if (! _right) {
-        // _right=0;
-        // Todo: assign to right with a unique ptr holding a new tree
-        // that has value_ as root
+        _right = PtrType(new TreeNode_(value_, _right=0));
+        return _right;
       }
       return _right->insert(value_);
     }
-    return 0;
+    return nullptr;
   }
 
   void print(std::ostream& os) {
     if (_left)
       _left->print(os);
-    os << _value << " ";
+    os << _value << "\n";
     if (_right)
       _right->print(os);
   }

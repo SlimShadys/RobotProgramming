@@ -18,9 +18,9 @@ namespace rp {
   }
 
   ostream& operator<<(ostream& os, const PointWithIndex& p){
-    os << p.index << " "
-       << p.value.at(0) << " "
-       << p.value.at(1) << " "
+    os << p.index << " | "
+       << p.value.at(0) << " | "
+       << p.value.at(1) << " | "
        << p.value.at(2);
     return os;
   }
