@@ -1,0 +1,5 @@
+TODO:
+add two files to carry on ICP on points in 2D.
+The optimization follows the same strategy of the 3D case and is given by me
+in the file icp_2d_optimization.cpp
+
