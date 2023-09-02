@@ -3,7 +3,6 @@
 #include "eigen_covariance.h"
 #include "brute_force_search.h"
 
-
 template <typename IteratorType_>
 class TreeNode_ {
 public:
@@ -19,6 +18,7 @@ public:
   using PtrType = std::unique_ptr < ThisType  >;
   using AnswerType = std::vector<PointType* >;
   
+  // Tree Node Constructor
   TreeNode_(IteratorType begin_,
             IteratorType end_,
             int max_points_in_leaf=20):
@@ -42,6 +42,7 @@ public:
     _right = PtrType(new ThisType(middle, _end,   max_points_in_leaf) );
   }
 
+  // Fast Search
   void fastSearch(AnswerType& answers,
                   const PointType& query,
                   Scalar norm) {
@@ -56,6 +57,7 @@ public:
       _right->fastSearch(answers,query,norm);
   }
 
+  // Full Search
   void fullSearch(AnswerType& answers,
                   const PointType& query,
                   Scalar norm) {
@@ -74,7 +76,8 @@ public:
     }
   }
 
-    PointType* bestMatchFast(const PointType& query,
+  // Best Match Fast
+  PointType* bestMatchFast(const PointType& query,
                            Scalar norm) {
     if (! _left && !_right) {
       return bruteForceBestMatch(_begin, _end, query, norm);

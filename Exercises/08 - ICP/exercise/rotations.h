@@ -12,7 +12,6 @@ inline Eigen::Matrix3f Rx(float theta) {
   return R;
 }
 
-
 inline Eigen::Matrix3f Ry(float theta) {
   float c=cos(theta);
   float s=sin(theta);
@@ -44,4 +43,3 @@ inline Eigen::Matrix2f Rtheta(float theta) {
     s,  c;
   return R;
 }
-

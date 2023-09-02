@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 template <typename IteratorType_>
 int bruteForceSearch(std::vector<typename IteratorType_::value_type*>& answers,
