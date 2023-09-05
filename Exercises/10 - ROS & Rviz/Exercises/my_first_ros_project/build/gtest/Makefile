@@ -48,7 +48,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/src"
+CMAKE_SOURCE_DIR = "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/src"
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build"

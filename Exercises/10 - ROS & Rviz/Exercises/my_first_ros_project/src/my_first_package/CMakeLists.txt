@@ -9,6 +9,7 @@ project(my_first_package)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,6 +106,11 @@ catkin_package(
 #  LIBRARIES my_first_package
 #  CATKIN_DEPENDS rospy
 #  DEPENDS system_lib
+)
+
+catkin_install_python(
+  PROGRAMS scripts/publisher_node.py
+  DESTINATION $(CATKIN_PACKAGE_BIN_DESTINATION)
 )
 
 ###########

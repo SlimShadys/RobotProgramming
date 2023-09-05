@@ -1,8 +1,8 @@
-# Install script for directory: /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/src
+# Install script for directory: /home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install")
+  set(CMAKE_INSTALL_PREFIX "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -49,38 +49,38 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/_setup_util.py")
+   "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/_setup_util.py")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE PROGRAM FILES "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/_setup_util.py")
+file(INSTALL DESTINATION "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE PROGRAM FILES "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/_setup_util.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/env.sh")
+   "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/env.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE PROGRAM FILES "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/env.sh")
+file(INSTALL DESTINATION "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE PROGRAM FILES "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/env.sh")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/setup.bash;/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/local_setup.bash")
+   "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/setup.bash;/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/local_setup.bash")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE FILE FILES
+file(INSTALL DESTINATION "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE FILE FILES
     "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/setup.bash"
     "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/local_setup.bash"
     )
@@ -88,14 +88,14 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/setup.sh;/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/local_setup.sh")
+   "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/setup.sh;/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/local_setup.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE FILE FILES
+file(INSTALL DESTINATION "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE FILE FILES
     "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/setup.sh"
     "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/local_setup.sh"
     )
@@ -103,14 +103,14 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/setup.zsh;/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/local_setup.zsh")
+   "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/setup.zsh;/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/local_setup.zsh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE FILE FILES
+file(INSTALL DESTINATION "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE FILE FILES
     "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/setup.zsh"
     "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/local_setup.zsh"
     )
@@ -118,19 +118,20 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/.rosinstall")
+   "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE FILE FILES "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/.rosinstall")
+file(INSTALL DESTINATION "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install" TYPE FILE FILES "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/catkin_generated/installspace/.rosinstall")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/gtest/cmake_install.cmake")
+  include("/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/build/my_first_package/cmake_install.cmake")
 
 endif()
 

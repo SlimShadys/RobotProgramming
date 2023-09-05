@@ -1,2 +1,2 @@
-
--DCATKIN_DEVEL_PREFIX=/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/devel -DCMAKE_INSTALL_PREFIX=/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install -G Unix Makefiles
+my_first_package
+-DCATKIN_DEVEL_PREFIX=/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/devel -DCMAKE_INSTALL_PREFIX=/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install -G Unix Makefiles

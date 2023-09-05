@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install")
+  set(CMAKE_INSTALL_PREFIX "/home/lattinone/RobotProgramming/Exercises/10 - ROS & Rviz/Exercises/my_first_ros_project/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
