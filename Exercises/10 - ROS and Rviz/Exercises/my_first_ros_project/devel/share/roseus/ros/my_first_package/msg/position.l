@@ -14,7 +14,7 @@
 
 (defclass my_first_package::position
   :super ros::object
-  :slots (_message _x _y _even ))
+  :slots (_message _x _y _even _array ))
 
 (defmethod my_first_package::position
   (:init
@@ -23,12 +23,14 @@
     ((:x __x) 0.0)
     ((:y __y) 0.0)
     ((:even __even) nil)
+    ((:array __array) (let (r) (dotimes (i 0) (push "" r)) r))
     )
    (send-super :init)
    (setq _message (string __message))
    (setq _x (float __x))
    (setq _y (float __y))
    (setq _even __even)
+   (setq _array __array)
    self)
   (:message
    (&optional __message)
@@ -42,6 +44,9 @@
   (:even
    (&optional (__even :null))
    (if (not (eq __even :null)) (setq _even __even)) _even)
+  (:array
+   (&optional __array)
+   (if __array (setq _array __array)) _array)
   (:serialization-length
    ()
    (+
@@ -53,6 +58,8 @@
     4
     ;; bool _even
     1
+    ;; string[] _array
+    (apply #'+ (mapcar #'(lambda (x) (+ 4 (length x))) _array)) 4
     ))
   (:serialize
    (&optional strm)
@@ -66,6 +73,11 @@
        (sys::poke _y (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
      ;; bool _even
        (if _even (write-byte -1 s) (write-byte 0 s))
+     ;; string[] _array
+     (write-long (length _array) s)
+     (dolist (elem _array)
+       (write-long (length elem) s) (princ elem s)
+       )
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -78,21 +90,29 @@
      (setq _y (sys::peek buf ptr- :float)) (incf ptr- 4)
    ;; bool _even
      (setq _even (not (= 0 (sys::peek buf ptr- :char)))) (incf ptr- 1)
+   ;; string[] _array
+   (let (n)
+     (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4)
+     (setq _array (make-list n))
+     (dotimes (i n)
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setf (elt _array i) (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
+     ))
    ;;
    self)
   )
 
-(setf (get my_first_package::position :md5sum-) "1dc6b20bdff8e4b6f0ccfd6e4f6a991d")
+(setf (get my_first_package::position :md5sum-) "9a284313f2e54143038565ca094ceb0f")
 (setf (get my_first_package::position :datatype-) "my_first_package/position")
 (setf (get my_first_package::position :definition-)
       "string message
 float32 x
 float32 y
 bool even
+string[] array
 ")
 
 
 
-(provide :my_first_package/position "1dc6b20bdff8e4b6f0ccfd6e4f6a991d")
+(provide :my_first_package/position "9a284313f2e54143038565ca094ceb0f")
 
 

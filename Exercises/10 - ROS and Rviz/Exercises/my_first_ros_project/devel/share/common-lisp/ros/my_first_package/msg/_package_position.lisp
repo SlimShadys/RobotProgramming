@@ -7,4 +7,6 @@
           Y
           EVEN-VAL
           EVEN
+          ARRAY-VAL
+          ARRAY
 ))

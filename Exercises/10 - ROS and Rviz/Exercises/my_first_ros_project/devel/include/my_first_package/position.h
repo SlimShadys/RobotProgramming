@@ -27,13 +27,15 @@ struct position_
     : message()
     , x(0.0)
     , y(0.0)
-    , even(false)  {
+    , even(false)
+    , array()  {
     }
   position_(const ContainerAllocator& _alloc)
     : message(_alloc)
     , x(0.0)
     , y(0.0)
-    , even(false)  {
+    , even(false)
+    , array(_alloc)  {
   (void)_alloc;
     }
 
@@ -50,6 +52,9 @@ struct position_
 
    typedef uint8_t _even_type;
   _even_type even;
+
+   typedef std::vector<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>> _array_type;
+  _array_type array;
 
 
 
@@ -83,7 +88,8 @@ bool operator==(const ::my_first_package::position_<ContainerAllocator1> & lhs, 
   return lhs.message == rhs.message &&
     lhs.x == rhs.x &&
     lhs.y == rhs.y &&
-    lhs.even == rhs.even;
+    lhs.even == rhs.even &&
+    lhs.array == rhs.array;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -140,12 +146,12 @@ struct MD5Sum< ::my_first_package::position_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "1dc6b20bdff8e4b6f0ccfd6e4f6a991d";
+    return "9a284313f2e54143038565ca094ceb0f";
   }
 
   static const char* value(const ::my_first_package::position_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x1dc6b20bdff8e4b6ULL;
-  static const uint64_t static_value2 = 0xf0ccfd6e4f6a991dULL;
+  static const uint64_t static_value1 = 0x9a284313f2e54143ULL;
+  static const uint64_t static_value2 = 0x038565ca094ceb0fULL;
 };
 
 template<class ContainerAllocator>
@@ -168,6 +174,7 @@ struct Definition< ::my_first_package::position_<ContainerAllocator> >
 "float32 x\n"
 "float32 y\n"
 "bool even\n"
+"string[] array\n"
 ;
   }
 
@@ -190,6 +197,7 @@ namespace serialization
       stream.next(m.x);
       stream.next(m.y);
       stream.next(m.even);
+      stream.next(m.array);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -216,6 +224,12 @@ struct Printer< ::my_first_package::position_<ContainerAllocator> >
     Printer<float>::stream(s, indent + "  ", v.y);
     s << indent << "even: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.even);
+    s << indent << "array[]" << std::endl;
+    for (size_t i = 0; i < v.array.size(); ++i)
+    {
+      s << indent << "  array[" << i << "]: ";
+      Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.array[i]);
+    }
   }
 };
 

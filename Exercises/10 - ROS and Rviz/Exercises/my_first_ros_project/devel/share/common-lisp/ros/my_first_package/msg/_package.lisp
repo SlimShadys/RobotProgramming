@@ -3,5 +3,7 @@
   (:export
    "<POSITION>"
    "POSITION"
+   "<VALUES>"
+   "VALUES"
   ))
 

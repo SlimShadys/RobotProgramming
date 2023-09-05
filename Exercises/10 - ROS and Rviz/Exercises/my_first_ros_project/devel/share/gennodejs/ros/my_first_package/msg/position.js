@@ -22,6 +22,7 @@ class position {
       this.x = null;
       this.y = null;
       this.even = null;
+      this.array = null;
     }
     else {
       if (initObj.hasOwnProperty('message')) {
@@ -48,6 +49,12 @@ class position {
       else {
         this.even = false;
       }
+      if (initObj.hasOwnProperty('array')) {
+        this.array = initObj.array
+      }
+      else {
+        this.array = [];
+      }
     }
   }
 
@@ -61,6 +68,8 @@ class position {
     bufferOffset = _serializer.float32(obj.y, buffer, bufferOffset);
     // Serialize message field [even]
     bufferOffset = _serializer.bool(obj.even, buffer, bufferOffset);
+    // Serialize message field [array]
+    bufferOffset = _arraySerializer.string(obj.array, buffer, bufferOffset, null);
     return bufferOffset;
   }
 
@@ -76,13 +85,18 @@ class position {
     data.y = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [even]
     data.even = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [array]
+    data.array = _arrayDeserializer.string(buffer, bufferOffset, null)
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += _getByteLength(object.message);
-    return length + 13;
+    object.array.forEach((val) => {
+      length += 4 + _getByteLength(val);
+    });
+    return length + 17;
   }
 
   static datatype() {
@@ -92,7 +106,7 @@ class position {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '1dc6b20bdff8e4b6f0ccfd6e4f6a991d';
+    return '9a284313f2e54143038565ca094ceb0f';
   }
 
   static messageDefinition() {
@@ -102,6 +116,7 @@ class position {
     float32 x
     float32 y
     bool even
+    string[] array
     `;
   }
 
@@ -137,6 +152,13 @@ class position {
     }
     else {
       resolved.even = false
+    }
+
+    if (msg.array !== undefined) {
+      resolved.array = msg.array;
+    }
+    else {
+      resolved.array = []
     }
 
     return resolved;

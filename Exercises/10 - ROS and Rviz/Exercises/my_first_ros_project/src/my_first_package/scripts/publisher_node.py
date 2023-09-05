@@ -18,22 +18,30 @@ def talk_to_me():
     # This determines how long ROS sleeps before waking up again
     # If set to 0, it means it's always active
     # If set to 1, it means it sleeps for 1 second
-    rate = rospy.Rate(hz=0.5)
+    rate = rospy.Rate(hz=1)
 
     # Log a message into ROS
     rospy.loginfo("'publisher_node' started successfully.")
 
+    # Vars
+    emptyList = []
+    counter = 0
+
     while not rospy.is_shutdown():
         message = position()
 
-        if(int(rospy.get_time()) % 2 == 0):
+        if(counter % 2 == 0):
             message.message = "Current position |"
             message.x = 2.0
             message.y = 1.65
             message.even = True
         else:
+            emptyList.append("a")
             message.even = False
+            message.array = emptyList
+
         pub.publish(message)
+        counter += 1
         rate.sleep()
 
 # Main function

@@ -1,11 +1,16 @@
 # Hashes of file build rules.
 a3a89d6f28c96771457b1d863a20a661 /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/include/my_first_package/position.h
+19728f73519e0dce31ab7f934271604c /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/include/my_first_package/values.h
 4c79d02c843dc621be27ecd6c2513b20 /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/lib/python3/dist-packages/my_first_package/msg/__init__.py
 f1be904269dea7e52fa1e72c9b858b49 /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/lib/python3/dist-packages/my_first_package/msg/_position.py
+206e6af132288cf1d07bfc67f04de417 /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/lib/python3/dist-packages/my_first_package/msg/_values.py
 cd603dab41280db23f5cb0666a9ebf9e /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/share/common-lisp/ros/my_first_package/msg/position.lisp
+ed19b1b64c5a8fa43e776abc28e1efeb /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/share/common-lisp/ros/my_first_package/msg/values.lisp
 243292bcae50b694dbdbd9d89b562824 /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/msg/position.js
+dceee7d3f55f0a52e09dc73fe8f08b54 /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/msg/values.js
 6c5d5f3c68667b652d32517912c20f69 /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/share/roseus/ros/my_first_package/manifest.l
 85155857f5888701aa48e007d7a2f1d6 /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/share/roseus/ros/my_first_package/msg/position.l
+012a04ba99f6785b586181cc0d82b4bb /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/share/roseus/ros/my_first_package/msg/values.l
 124a2d0552a019ff469645850f251e15 CMakeFiles/clean_test_results
 e64f68b5110273eeddd61515aa905766 my_first_package/CMakeFiles/_my_first_package_generate_messages_check_deps_position
 aa1eccc45a19262684cf4453fde671b5 my_first_package/CMakeFiles/my_first_package_generate_messages_cpp

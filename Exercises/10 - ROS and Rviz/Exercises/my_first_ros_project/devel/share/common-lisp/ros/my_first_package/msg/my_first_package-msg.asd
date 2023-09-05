@@ -6,4 +6,6 @@
   :components ((:file "_package")
     (:file "position" :depends-on ("_package_position"))
     (:file "_package_position" :depends-on ("_package"))
+    (:file "values" :depends-on ("_package_values"))
+    (:file "_package_values" :depends-on ("_package"))
   ))

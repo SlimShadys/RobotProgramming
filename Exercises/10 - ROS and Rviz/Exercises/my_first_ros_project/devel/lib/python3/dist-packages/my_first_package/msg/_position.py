@@ -8,15 +8,16 @@ import struct
 
 
 class position(genpy.Message):
-  _md5sum = "1dc6b20bdff8e4b6f0ccfd6e4f6a991d"
+  _md5sum = "9a284313f2e54143038565ca094ceb0f"
   _type = "my_first_package/position"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """string message
 float32 x
 float32 y
-bool even"""
-  __slots__ = ['message','x','y','even']
-  _slot_types = ['string','float32','float32','bool']
+bool even
+string[] array"""
+  __slots__ = ['message','x','y','even','array']
+  _slot_types = ['string','float32','float32','bool','string[]']
 
   def __init__(self, *args, **kwds):
     """
@@ -26,7 +27,7 @@ bool even"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       message,x,y,even
+       message,x,y,even,array
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -43,11 +44,14 @@ bool even"""
         self.y = 0.
       if self.even is None:
         self.even = False
+      if self.array is None:
+        self.array = []
     else:
       self.message = ''
       self.x = 0.
       self.y = 0.
       self.even = False
+      self.array = []
 
   def _get_types(self):
     """
@@ -69,6 +73,14 @@ bool even"""
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
       buff.write(_get_struct_2fB().pack(_x.x, _x.y, _x.even))
+      length = len(self.array)
+      buff.write(_struct_I.pack(length))
+      for val1 in self.array:
+        length = len(val1)
+        if python3 or type(val1) == unicode:
+          val1 = val1.encode('utf-8')
+          length = len(val1)
+        buff.write(struct.Struct('<I%ss'%length).pack(length, val1))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -95,6 +107,21 @@ bool even"""
       end += 9
       (_x.x, _x.y, _x.even,) = _get_struct_2fB().unpack(str[start:end])
       self.even = bool(self.even)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      self.array = []
+      for i in range(0, length):
+        start = end
+        end += 4
+        (length,) = _struct_I.unpack(str[start:end])
+        start = end
+        end += length
+        if python3:
+          val1 = str[start:end].decode('utf-8', 'rosmsg')
+        else:
+          val1 = str[start:end]
+        self.array.append(val1)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -115,6 +142,14 @@ bool even"""
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
       buff.write(_get_struct_2fB().pack(_x.x, _x.y, _x.even))
+      length = len(self.array)
+      buff.write(_struct_I.pack(length))
+      for val1 in self.array:
+        length = len(val1)
+        if python3 or type(val1) == unicode:
+          val1 = val1.encode('utf-8')
+          length = len(val1)
+        buff.write(struct.Struct('<I%ss'%length).pack(length, val1))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -142,6 +177,21 @@ bool even"""
       end += 9
       (_x.x, _x.y, _x.even,) = _get_struct_2fB().unpack(str[start:end])
       self.even = bool(self.even)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      self.array = []
+      for i in range(0, length):
+        start = end
+        end += 4
+        (length,) = _struct_I.unpack(str[start:end])
+        start = end
+        end += length
+        if python3:
+          val1 = str[start:end].decode('utf-8', 'rosmsg')
+        else:
+          val1 = str[start:end]
+        self.array.append(val1)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill

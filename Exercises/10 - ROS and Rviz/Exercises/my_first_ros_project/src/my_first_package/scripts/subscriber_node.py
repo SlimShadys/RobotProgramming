@@ -7,8 +7,11 @@ from my_first_package.msg import position
 # This receives the data from 'talking_topic'.
 # The msg variable is what 'talking_topic' sends us.
 def listenCallback(message):
-    if(message.message == None):
-        rospy.loginfo(F"No message here due to the fact that time is: {message.even}")
+    if(message.message == ''):
+        rospy.loginfo("--------------------------")
+        rospy.loginfo(F"No message here due to the fact that counter is: {message.even}")
+        rospy.loginfo(F"Array: {message.array}")
+        rospy.loginfo("--------------------------")
     else:
         rospy.loginfo(F"{message.message} X: {message.x} | Y: {message.y} (Even: {message.even})")
 
