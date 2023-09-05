@@ -109,7 +109,10 @@ catkin_package(
 )
 
 catkin_install_python(
-  PROGRAMS scripts/publisher_node.py
+  PROGRAMS 
+  scripts/publisher_node.py 
+  scripts/subscriber_node.py
+  # -------------------------------------- #
   DESTINATION $(CATKIN_PACKAGE_BIN_DESTINATION)
 )
 

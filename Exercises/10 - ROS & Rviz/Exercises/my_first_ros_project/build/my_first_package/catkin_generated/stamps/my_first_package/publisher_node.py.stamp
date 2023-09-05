@@ -4,15 +4,15 @@ import rospy
 from std_msgs.msg import *
 
 def talk_to_me():
-    # name = Name of the topic
-    # data_class = Which type we want to pass
-    # queue_size = How many messages we have in queue before starting deleting them
-    pub = rospy.Publisher(name="talking_topic", data_class=String, queue_size=10)
-
     # name = Name of the node
     # anonymous = If we create two of these nodes, one will get followed by a number
     #             (Example: publisher_node_12849124)
     rospy.init_node('publisher_node', anonymous=True)
+
+    # name = Name of the topic
+    # data_class = Which type we want to pass
+    # queue_size = How many messages we have in queue before starting deleting them
+    pub = rospy.Publisher(name="talking_topic", data_class=String, queue_size=10)
 
     # This determines how long ROS sleeps before waking up again
     # If set to 0, it means it's always active
@@ -31,7 +31,7 @@ def talk_to_me():
 if __name__ == '__main__':
     try:
         talk_to_me()
-    except rospy.ROSInterruptException:
-        print("Application stopped")
+    except rospy.ROSException:
+        print("'publisher_node' stopped successfully.")
         pass
 
