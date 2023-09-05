@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz
 include my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/progress.make
 
 my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs: /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/msg/position.js
+my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs: /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/srv/multiplier.js
 
 
 /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/msg/position.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
@@ -61,8 +62,14 @@ my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs: /home/lat
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from my_first_package/position.msg"
 	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build/my_first_package" && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/src/my_first_package/msg/position.msg -Imy_first_package:/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/src/my_first_package/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p my_first_package -o /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/msg
 
+/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/srv/multiplier.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/srv/multiplier.js: /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from my_first_package/multiplier.srv"
+	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build/my_first_package" && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv -Imy_first_package:/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/src/my_first_package/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p my_first_package -o /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/srv
+
 my_first_package_generate_messages_nodejs: my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs
 my_first_package_generate_messages_nodejs: /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/msg/position.js
+my_first_package_generate_messages_nodejs: /home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10\ -\ ROS\ and\ Rviz/Exercises/my_first_ros_project/devel/share/gennodejs/ros/my_first_package/srv/multiplier.js
 my_first_package_generate_messages_nodejs: my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/build.make
 
 .PHONY : my_first_package_generate_messages_nodejs

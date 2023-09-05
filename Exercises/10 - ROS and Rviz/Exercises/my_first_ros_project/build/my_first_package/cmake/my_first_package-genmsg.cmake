@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "my_first_package: 1 messages, 0 services")
+message(STATUS "my_first_package: 1 messages, 1 services")
 
 set(MSG_I_FLAGS "-Imy_first_package:/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
 
@@ -22,6 +22,11 @@ add_custom_target(_my_first_package_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "my_first_package" "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/msg/position.msg" ""
 )
 
+get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv" NAME_WE)
+add_custom_target(_my_first_package_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "my_first_package" "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv" ""
+)
+
 #
 #  langs = gencpp;geneus;genlisp;gennodejs;genpy
 #
@@ -36,6 +41,12 @@ _generate_msg_cpp(my_first_package
 )
 
 ### Generating Services
+_generate_srv_cpp(my_first_package
+  "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/my_first_package
+)
 
 ### Generating Module File
 _generate_module_cpp(my_first_package
@@ -50,6 +61,8 @@ add_dependencies(my_first_package_generate_messages my_first_package_generate_me
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/msg/position.msg" NAME_WE)
+add_dependencies(my_first_package_generate_messages_cpp _my_first_package_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv" NAME_WE)
 add_dependencies(my_first_package_generate_messages_cpp _my_first_package_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -69,6 +82,12 @@ _generate_msg_eus(my_first_package
 )
 
 ### Generating Services
+_generate_srv_eus(my_first_package
+  "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/my_first_package
+)
 
 ### Generating Module File
 _generate_module_eus(my_first_package
@@ -83,6 +102,8 @@ add_dependencies(my_first_package_generate_messages my_first_package_generate_me
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/msg/position.msg" NAME_WE)
+add_dependencies(my_first_package_generate_messages_eus _my_first_package_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv" NAME_WE)
 add_dependencies(my_first_package_generate_messages_eus _my_first_package_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -102,6 +123,12 @@ _generate_msg_lisp(my_first_package
 )
 
 ### Generating Services
+_generate_srv_lisp(my_first_package
+  "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/my_first_package
+)
 
 ### Generating Module File
 _generate_module_lisp(my_first_package
@@ -116,6 +143,8 @@ add_dependencies(my_first_package_generate_messages my_first_package_generate_me
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/msg/position.msg" NAME_WE)
+add_dependencies(my_first_package_generate_messages_lisp _my_first_package_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv" NAME_WE)
 add_dependencies(my_first_package_generate_messages_lisp _my_first_package_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -135,6 +164,12 @@ _generate_msg_nodejs(my_first_package
 )
 
 ### Generating Services
+_generate_srv_nodejs(my_first_package
+  "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/my_first_package
+)
 
 ### Generating Module File
 _generate_module_nodejs(my_first_package
@@ -149,6 +184,8 @@ add_dependencies(my_first_package_generate_messages my_first_package_generate_me
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/msg/position.msg" NAME_WE)
+add_dependencies(my_first_package_generate_messages_nodejs _my_first_package_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv" NAME_WE)
 add_dependencies(my_first_package_generate_messages_nodejs _my_first_package_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -168,6 +205,12 @@ _generate_msg_py(my_first_package
 )
 
 ### Generating Services
+_generate_srv_py(my_first_package
+  "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/my_first_package
+)
 
 ### Generating Module File
 _generate_module_py(my_first_package
@@ -182,6 +225,8 @@ add_dependencies(my_first_package_generate_messages my_first_package_generate_me
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/msg/position.msg" NAME_WE)
+add_dependencies(my_first_package_generate_messages_py _my_first_package_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv" NAME_WE)
 add_dependencies(my_first_package_generate_messages_py _my_first_package_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

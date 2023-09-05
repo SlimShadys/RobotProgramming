@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/msg/position.msg"
-services_str = ""
+services_str = "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv"
 pkg_name = "my_first_package"
 dependencies_str = "std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

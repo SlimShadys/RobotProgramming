@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/lib/python3/dist-packages/my_first_package/msg/__init__.py"
   "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/lib/python3/dist-packages/my_first_package/msg/_position.py"
+  "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/lib/python3/dist-packages/my_first_package/srv/__init__.py"
+  "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/lib/python3/dist-packages/my_first_package/srv/_multiplier.py"
   "CMakeFiles/my_first_package_generate_messages_py"
 )
 

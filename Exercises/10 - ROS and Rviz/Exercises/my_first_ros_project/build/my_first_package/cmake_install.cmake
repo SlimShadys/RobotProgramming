@@ -42,6 +42,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_first_package/srv" TYPE FILE FILES "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/src/my_first_package/srv/multiplier.srv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_first_package/cmake" TYPE FILE FILES "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build/my_first_package/catkin_generated/installspace/my_first_package-msg-paths.cmake")
 endif()
 
@@ -94,5 +98,9 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/$(CATKIN_PACKAGE_BIN_DESTINATION)" TYPE PROGRAM FILES "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build/my_first_package/catkin_generated/installspace/subscriber_node.py")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/$(CATKIN_PACKAGE_BIN_DESTINATION)" TYPE PROGRAM FILES "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build/my_first_package/catkin_generated/installspace/service_server_node.py")
 endif()
 

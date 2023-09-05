@@ -89,6 +89,18 @@ test/fast: test
 
 .PHONY : test/fast
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -122,18 +134,6 @@ install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -211,6 +211,36 @@ my_first_package_gennodejs: my_first_package/CMakeFiles/my_first_package_gennode
 my_first_package_gennodejs/fast:
 	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f my_first_package/CMakeFiles/my_first_package_gennodejs.dir/build.make my_first_package/CMakeFiles/my_first_package_gennodejs.dir/build
 .PHONY : my_first_package_gennodejs/fast
+
+# Convenience name for target.
+my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/rule:
+	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f CMakeFiles/Makefile2 my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/rule
+.PHONY : my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+my_first_package_generate_messages_nodejs: my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/rule
+
+.PHONY : my_first_package_generate_messages_nodejs
+
+# fast build rule for target.
+my_first_package_generate_messages_nodejs/fast:
+	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/build.make my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/build
+.PHONY : my_first_package_generate_messages_nodejs/fast
+
+# Convenience name for target.
+my_first_package/CMakeFiles/my_first_package_genlisp.dir/rule:
+	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f CMakeFiles/Makefile2 my_first_package/CMakeFiles/my_first_package_genlisp.dir/rule
+.PHONY : my_first_package/CMakeFiles/my_first_package_genlisp.dir/rule
+
+# Convenience name for target.
+my_first_package_genlisp: my_first_package/CMakeFiles/my_first_package_genlisp.dir/rule
+
+.PHONY : my_first_package_genlisp
+
+# fast build rule for target.
+my_first_package_genlisp/fast:
+	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f my_first_package/CMakeFiles/my_first_package_genlisp.dir/build.make my_first_package/CMakeFiles/my_first_package_genlisp.dir/build
+.PHONY : my_first_package_genlisp/fast
 
 # Convenience name for target.
 my_first_package/CMakeFiles/my_first_package_generate_messages_eus.dir/rule:
@@ -333,6 +363,21 @@ _my_first_package_generate_messages_check_deps_position/fast:
 .PHONY : _my_first_package_generate_messages_check_deps_position/fast
 
 # Convenience name for target.
+my_first_package/CMakeFiles/_my_first_package_generate_messages_check_deps_multiplier.dir/rule:
+	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f CMakeFiles/Makefile2 my_first_package/CMakeFiles/_my_first_package_generate_messages_check_deps_multiplier.dir/rule
+.PHONY : my_first_package/CMakeFiles/_my_first_package_generate_messages_check_deps_multiplier.dir/rule
+
+# Convenience name for target.
+_my_first_package_generate_messages_check_deps_multiplier: my_first_package/CMakeFiles/_my_first_package_generate_messages_check_deps_multiplier.dir/rule
+
+.PHONY : _my_first_package_generate_messages_check_deps_multiplier
+
+# fast build rule for target.
+_my_first_package_generate_messages_check_deps_multiplier/fast:
+	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f my_first_package/CMakeFiles/_my_first_package_generate_messages_check_deps_multiplier.dir/build.make my_first_package/CMakeFiles/_my_first_package_generate_messages_check_deps_multiplier.dir/build
+.PHONY : _my_first_package_generate_messages_check_deps_multiplier/fast
+
+# Convenience name for target.
 my_first_package/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
 	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f CMakeFiles/Makefile2 my_first_package/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 .PHONY : my_first_package/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
@@ -392,36 +437,6 @@ my_first_package_geneus/fast:
 	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f my_first_package/CMakeFiles/my_first_package_geneus.dir/build.make my_first_package/CMakeFiles/my_first_package_geneus.dir/build
 .PHONY : my_first_package_geneus/fast
 
-# Convenience name for target.
-my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/rule:
-	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f CMakeFiles/Makefile2 my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/rule
-.PHONY : my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-my_first_package_generate_messages_nodejs: my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/rule
-
-.PHONY : my_first_package_generate_messages_nodejs
-
-# fast build rule for target.
-my_first_package_generate_messages_nodejs/fast:
-	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/build.make my_first_package/CMakeFiles/my_first_package_generate_messages_nodejs.dir/build
-.PHONY : my_first_package_generate_messages_nodejs/fast
-
-# Convenience name for target.
-my_first_package/CMakeFiles/my_first_package_genlisp.dir/rule:
-	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f CMakeFiles/Makefile2 my_first_package/CMakeFiles/my_first_package_genlisp.dir/rule
-.PHONY : my_first_package/CMakeFiles/my_first_package_genlisp.dir/rule
-
-# Convenience name for target.
-my_first_package_genlisp: my_first_package/CMakeFiles/my_first_package_genlisp.dir/rule
-
-.PHONY : my_first_package_genlisp
-
-# fast build rule for target.
-my_first_package_genlisp/fast:
-	cd "/home/lattinone/RobotProgramming/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/build" && $(MAKE) -f my_first_package/CMakeFiles/my_first_package_genlisp.dir/build.make my_first_package/CMakeFiles/my_first_package_genlisp.dir/build
-.PHONY : my_first_package_genlisp/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -434,6 +449,9 @@ help:
 	@echo "... my_first_package_genpy"
 	@echo "... my_first_package_generate_messages_py"
 	@echo "... my_first_package_gennodejs"
+	@echo "... install/local"
+	@echo "... my_first_package_generate_messages_nodejs"
+	@echo "... my_first_package_genlisp"
 	@echo "... my_first_package_generate_messages_eus"
 	@echo "... my_first_package_generate_messages_lisp"
 	@echo "... install"
@@ -444,14 +462,12 @@ help:
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... my_first_package_generate_messages"
 	@echo "... _my_first_package_generate_messages_check_deps_position"
+	@echo "... _my_first_package_generate_messages_check_deps_multiplier"
 	@echo "... install/strip"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... my_first_package_generate_messages_cpp"
 	@echo "... my_first_package_gencpp"
 	@echo "... my_first_package_geneus"
-	@echo "... install/local"
-	@echo "... my_first_package_generate_messages_nodejs"
-	@echo "... my_first_package_genlisp"
 .PHONY : help
 
 

@@ -1,0 +1,6 @@
+# Inputs
+int32 a
+int32 b
+--- # Output
+int32 result
+

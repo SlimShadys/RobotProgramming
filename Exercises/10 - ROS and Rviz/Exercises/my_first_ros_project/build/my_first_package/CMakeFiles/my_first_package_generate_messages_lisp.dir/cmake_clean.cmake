@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/share/common-lisp/ros/my_first_package/msg/position.lisp"
+  "/home/lattinone/Desktop/RobotProgrammingPersonal/Exercises/10 - ROS and Rviz/Exercises/my_first_ros_project/devel/share/common-lisp/ros/my_first_package/srv/multiplier.lisp"
   "CMakeFiles/my_first_package_generate_messages_lisp"
 )
 
