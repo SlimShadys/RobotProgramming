@@ -4,3 +4,6 @@
 # Ignore the /out directories
 **/out/
 
+# Ignore ROS build dirs
+**/build/
+**/devel/
