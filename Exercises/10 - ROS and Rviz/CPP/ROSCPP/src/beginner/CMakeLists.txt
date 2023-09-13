@@ -133,6 +133,8 @@ include_directories(
 # The recommended prefix ensures that target names across packages don't collide
 add_executable(talker src/talker.cpp)
 add_executable(listener src/listener.cpp)
+add_executable(add_two_ints_server src/add_two_ints_server.cpp)
+add_executable(add_two_ints_client src/add_two_ints_client.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -141,6 +143,8 @@ add_executable(listener src/listener.cpp)
 # set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
 add_dependencies(talker beginner_generate_messages_cpp)
 add_dependencies(listener beginner_generate_messages_cpp)
+add_dependencies(add_two_ints_server beginner_gencpp)
+add_dependencies(add_two_ints_client beginner_gencpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -149,6 +153,8 @@ add_dependencies(listener beginner_generate_messages_cpp)
 # Specify libraries to link a library or executable target against
 target_link_libraries(talker ${catkin_LIBRARIES})
 target_link_libraries(listener ${catkin_LIBRARIES})
+target_link_libraries(add_two_ints_server ${catkin_LIBRARIES})
+target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
 
 #############
 ## Install ##
