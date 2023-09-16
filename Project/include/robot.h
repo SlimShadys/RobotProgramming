@@ -1,17 +1,14 @@
 #pragma once
-
-#include "types.h"
 #include "world.h"
 
-struct Robot : public WorldItem {
-  Robot(float radius_, std::shared_ptr<World> w_,
-        const Pose& pose_ = Pose::Identity());
-  Robot(float radius_, std::shared_ptr<WorldItem> parent_,
-        const Pose& pose_ = Pose::Identity());
+class Robot : public WorldItem {
+ public:
+  Robot(float radius_, std::shared_ptr<World> w, const Pose& pose_ = Pose());
+
+  Robot(float radius_, std::shared_ptr<WorldItem> p_, const Pose& pose_ = Pose());
 
   void draw() override;
   void timeTick(float dt) override;
-
   float radius;
   float tv = 0, rv = 0;
 };

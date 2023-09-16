@@ -5,80 +5,165 @@
 #include <opencv2/imgproc.hpp>
 #include <stdexcept>
 
-World::World() {}
+using namespace std;
 
-void World::loadFromImage(const std::string filename_) {
-  cv::Mat frame = cv::imread(filename_);
-  if (frame.rows == 0) {
-    throw std::runtime_error("unable to load image");
+World::World() { 
+  memset(items, 0, sizeof(WorldItem *) * MAX_ITEMS); 
+}
+
+WorldItem::WorldItem(std::shared_ptr<World> w_, const Pose &p)
+{
+  parent = 0;
+  world = w_;
+  pose = p;
+  if (world)
+  {
+    bool result = world->add(this);
+    if (!result)
+      throw std::runtime_error("world full");
   }
-  cv::cvtColor(frame, display_image, cv::COLOR_BGR2GRAY);
-  size = display_image.rows * display_image.cols;
-  rows = display_image.rows;
-  cols = display_image.cols;
-  _grid = std::vector<uint8_t>(size, 0x00);
-  memcpy(_grid.data(), display_image.data, size);
 }
 
-void World::draw() {
-  for (const auto item : _items) item->draw();
-  cv::imshow("Map", display_image);
-  // Clean the display image
-  memcpy(display_image.data, _grid.data(), size);
-}
-
-void World::timeTick(float dt) {
-  for (const auto item : _items) item->timeTick(dt);
-}
-
-void World::add(WorldItem* item) { _items.push_back(item); }
-
-bool World::traverseBeam(IntPoint& endpoint, const IntPoint& origin,
-                         const float angle, const int max_range) {
-  Point p0 = origin.cast<float>();
-  const Point dp(cos(angle), sin(angle));
-  int range_to_go = max_range;
-  while (range_to_go > 0) {
-    endpoint = IntPoint(p0.x(), p0.y());
-    if (!inside(endpoint)) return false;
-    if (at(endpoint) < 127) return true;
-    p0 = p0 + dp;
-    --range_to_go;
+WorldItem::WorldItem(std::shared_ptr<WorldItem> p_, const Pose &p)
+{
+  parent = p_;
+  world = parent->world;
+  pose = p;
+  if (world)
+  {
+    bool result = world->add(this);
+    if (!result)
+      throw std::runtime_error("world full");
   }
-  return true;
 }
 
-bool World::collides(const IntPoint& p, const int radius) const {
-  if (!inside(p)) return true;
+WorldItem::~WorldItem()
+{
+  // Let's first check if the world is not null
+  if(world) {
+    // Cycle throughout the whole items of the world
+    for (int i = 0; i < world->num_items; ++i) {
+      if(!world->items[i]) {
+        // Still no link. Let's move to the next one
+        continue;
+      } else if (world->items[i] == this) { // I found a proper item. Let's check if it's linked to this instance
+        world->items[i] = 0; // Remove this from world->items
+      } else {
+        // This item is not linked to this instance, but it's still part of the world
+      }
+
+      // If a world item is linked to 'this',  then
+      //  replace 'this' with 'this->parent' to
+      //  remove 'this' from the items chain.
+      if (world->items[i]->parent.get() == this) {
+        world->items[i]->parent = parent;
+      }
+    }
+  } else {
+    // Nothing to do here since the item is not linked to any world.
+  }
+}
+
+Pose WorldItem::poseInWorld()
+{
+  if (!parent)
+    return pose;
+  return parent->poseInWorld() * pose;
+}
+
+void World::loadFromImage(const char *filename)
+{
+  cerr << "Loading [" << filename << "]" << endl;
+  cv::Mat m = cv::imread(filename);
+  if (m.rows == 0)
+  {
+    throw std::runtime_error("Unable to load image");
+  }
+  cv::cvtColor(m, _display_image, cv::COLOR_BGR2GRAY);
+  size = _display_image.rows * _display_image.cols;
+  grid = new uint8_t[_display_image.rows * _display_image.cols];
+  rows = _display_image.rows;
+  cols = _display_image.cols;
+  memcpy(grid, _display_image.data, size);
+}
+
+bool World::collides(const IntPoint &p, const int &radius) const
+{
+  if (!inside(p))
+    return true;
   int r2 = radius * radius;
-  for (int r = -radius; r <= radius; ++r) {
-    for (int c = -radius; c <= radius; ++c) {
+  for (int r = -radius; r <= radius; ++r)
+  {
+    for (int c = -radius; c <= radius; ++c)
+    {
       IntPoint off(r, c);
-      if (off.squaredNorm() > r2) continue;
+      if (off * off > r2)
+        continue;
       IntPoint p_test = p + IntPoint(r, c);
-      if (!inside(p_test)) return true;
-
-      // cerr << "r: " << r << " c: " << c << " val: " << (int) at(p_test) <<
-      // endl;
-      if (at(p_test) < 127) return true;
+      if (!inside(p_test))
+        return true;
+      if (at(p_test) < 50) // Pixels darker than 50 (0 black | 225 white) are marked as obstacles
+        return true;
     }
   }
   return false;
 }
 
-WorldItem::WorldItem(std::shared_ptr<World> w_, const Pose& p_)
-    : world(w_), parent(nullptr), pose_in_parent(p_) {
-  if (world) world->add(this);
+void World::draw(float rotationV, float translationV)
+{
+  memcpy(_display_image.data, grid, size);
+  for (int i = 0; i < num_items; ++i)
+  {
+    if (items[i])
+      items[i]->draw();
+  }
+
+  cv::Point text_position(0, 30);   //  Declaring the text position     //
+  cv::Point text_position2(0, 60);  //  Declaring the text position     //
+  cv::Scalar font_Color(0, 0, 0);   //  Declaring the color of the font //
+
+  int font_size = 1;
+  int font_weight = 1;
+
+  cv::putText(_display_image, "Rotation velocity   : " + to_string(rotationV), text_position, 0, font_size, font_Color, font_weight);
+  cv::putText(_display_image, "Translation velocity : " + to_string(translationV), text_position2, 0, font_size, font_Color, font_weight);
+
+  cv::imshow("map", _display_image);
 }
 
-WorldItem::WorldItem(std::shared_ptr<WorldItem> parent_, const Pose& p)
-    : world(parent_->world), parent(parent_), pose_in_parent(p) {
-  if (world) world->add(this);
+void World::timeTick(float dt)
+{
+  for (int i = 0; i < num_items; ++i)
+  {    
+    if (items[i] != nullptr)
+      items[i]->timeTick(dt);
+  }
 }
 
-Pose WorldItem::poseInWorld() {
-  if (!parent) return pose_in_parent;
-  return parent->poseInWorld() * pose_in_parent;
+bool World::add(WorldItem* item)
+{
+  if (num_items < MAX_ITEMS)
+  {
+    items[num_items] = item;
+    ++num_items;
+    return true;
+  }
+  return false;
 }
 
-WorldItem::~WorldItem() {}
+bool World::traverseBeam(IntPoint &endpoint, const IntPoint &origin,
+                         const float angle, const int max_range) {
+  Point p0(origin.x, origin.y);
+  const Point dp(cos(angle), sin(angle));
+  int range_to_go = max_range;
+  while (range_to_go > 0) {
+    endpoint = IntPoint(p0.x, p0.y);
+    if (!inside(endpoint))
+      return false;
+    if (at(endpoint) < 80)
+      return true;
+    p0 = p0 + dp;
+    --range_to_go;
+  }
+  return false;
+}
