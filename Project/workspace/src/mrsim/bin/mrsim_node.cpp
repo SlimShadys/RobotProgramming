@@ -52,16 +52,15 @@ int main(int argc, char** argv) {
   Lidar l(M_PI, 10, 180, robotSharedPtr, Pose(0.4, 0, 0));
   //Lidar l2(M_PI, 5, 100, robotSharedPtr, Pose(-0.4, 0, M_PI));
 
-  float delay = 0.04;
+  float delay = 0.07;
   int k;
-
 
   while (ros::ok()) {
     // run a simulation iteration
     worldSharedPtr->timeTick(delay);
     worldSharedPtr->draw(robotSharedPtr->rv, robotSharedPtr->tv);
 
-    k=cv::waitKeyEx(delay*1000)&255;
+    k = cv::waitKeyEx(delay*1000)&255;
     switch (k) {
       case 81:  // Left arrow
         robotSharedPtr->rv += 0.10;
@@ -75,10 +74,17 @@ int main(int argc, char** argv) {
       case 84:  // Down arrow
         robotSharedPtr->tv -= 0.2;
         break;  
-      case 32:  // Spacebar
+      case ' ':  // Spacebar
         robotSharedPtr->tv = 0;
         robotSharedPtr->rv = 0;
-        break;  
+        break;
+      case 'C': // C
+      case 'c':
+        robotSharedPtr->tv = 0;
+        robotSharedPtr->rv = 0;
+        robotSharedPtr->pose.translation = w.grid2world(startPointDIAG);
+        robotSharedPtr->pose.theta = 0;
+        break;
       case 27:  // Esc
         return 0;
       default:
