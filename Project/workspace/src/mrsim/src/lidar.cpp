@@ -21,6 +21,37 @@ Lidar::Lidar(float fov_, float max_range_, int num_beams_, std::shared_ptr<World
   ranges = new float[num_beams];
   }
 
+  Lidar::Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, std::shared_ptr<World> w, 
+  const Pose &pose_, float max_range_, int num_beams_, int parent_):
+  WorldItem(w, pose_)
+  {
+    id = id_;
+    type = type_;
+    frame_id = frame_id_;
+    namespc = namespace_;
+    fov = fov_;
+    max_range = max_range_;
+    num_beams = num_beams_;
+    parent = parent_;
+    ranges = new float[num_beams];
+  }
+
+
+  Lidar::Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, std::shared_ptr<WorldItem> p_, 
+  const Pose &pose_, float max_range_, int num_beams_, int parent_):
+  WorldItem(p_, pose_)
+  {
+    id = id_;
+    type = type_;
+    frame_id = frame_id_;
+    namespc = namespace_;
+    fov = fov_;
+    max_range = max_range_;
+    num_beams = num_beams_;
+    parent = parent_;
+    ranges = new float[num_beams];
+  }
+
 Lidar::~Lidar() {
   if (ranges)
     delete [] ranges;
@@ -51,6 +82,7 @@ void Lidar::timeTick(float dt) {
 void Lidar::draw() {
   Pose piw=poseInWorld();
   IntPoint origin=world->world2grid(piw.translation);
+  
   if (! world->inside(origin))
     return;
 

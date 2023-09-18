@@ -1,0 +1,65 @@
+{
+    "map": "background.png",
+    "items": [
+        {
+            "id": 0,
+            "type": "robot",
+            "frame_id": "frame_robot0",
+            "namespace": "robot_0",
+            "radius": 0.3,
+            "max_rv": 0.1,
+            "max_tv": 0.5,
+            "pose": [
+                618.122,
+                1028.39,
+                0
+            ],
+            "parent": -1
+        },
+        {
+            "id": 1,
+            "type": "lidar",
+            "frame_id": "frame_lidar0",
+            "namespace": "robot_0",
+            "fov": 3.141592,
+            "max_range": 5.0,
+            "num_beams": 180,
+            "pose": [
+                0.4,
+                0,
+                0
+            ],
+            "parent": 0
+        },
+        {
+            "id": 2,
+            "type": "robot",
+            "frame_id": "frame_robot0",
+            "namespace": "lidar_0",
+            "radius": 0.2,
+            "max_rv": 0.1,
+            "max_tv": 0.5,
+            "pose": [
+                -0.4,
+                0,
+                0
+            ],
+            "parent": 0
+        },
+        {
+            "id": 3,
+            "type": "lidar",
+            "frame_id": "frame_lidar0",
+            "namespace": "lidar_0",
+            "fov": 3.141592,
+            "max_range": 5.0,
+            "num_beams": 180,
+            "pose": [
+                -0.4,
+                0,
+                -3.14
+            ],
+            "parent": 2
+        }
+    ]
+}

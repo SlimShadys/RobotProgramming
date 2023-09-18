@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 # Find Eigen3 and OpenCV
 FIND_PACKAGE(OpenCV REQUIRED)
 FIND_PACKAGE(Eigen3 REQUIRED)
+FIND_PACKAGE(jsoncpp REQUIRED)
 
 # Include directories for OpenCV and Eigen3
 INCLUDE_DIRECTORIES(. /usr/include/eigen3   # Eigen3
@@ -15,25 +16,23 @@ INCLUDE_DIRECTORIES(. /usr/include/eigen3   # Eigen3
 
 # ----- SIMPLE CPP ----- #
 # Just in case we want to run ./main
-add_executable(main
-  src/simple_geometry.cpp
-  src/world.cpp
-  src/robot.cpp
-  src/lidar.cpp
-  src/main.cpp
-)
+# add_executable(main
+#   src/simple_geometry.cpp
+#   src/world.cpp
+#   src/robot.cpp
+#   src/lidar.cpp
+#   src/main.cpp
+# )
 
-target_include_directories(main PUBLIC include "include")
+# target_include_directories(main PUBLIC include "include")
 
-target_link_libraries(
-  main
-  ${OpenCV_LIBS}
-)
+# target_link_libraries(
+#   main
+#   ${OpenCV_LIBS}
+# )
 # ---------------------- #
 
 # ----- ROS Integration ----- #
-# In case you want to use a JSON format for the configuration file, feel free to use the jsoncpp lib
-# find_package(jsoncpp REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
     # Add required ROS packages to use in this project (ie. sensor_msgs, nav_msgs, etc)
     roscpp
@@ -71,6 +70,7 @@ target_include_directories(mrsim PUBLIC  # Include dirs
 target_link_libraries(mrsim PUBLIC # Link OpenCV/Eigen3 libs
     ${OpenCV_LIBRARIES}
     Eigen3::Eigen
+    jsoncpp_lib
 )
 
 # Node: mrsim_node
@@ -86,6 +86,7 @@ target_include_directories(mrsim_node PUBLIC # Include dirs
 target_link_libraries(mrsim_node PUBLIC# Link mrsim libs
     mrsim
     ${catkin_LIBRARIES}
+    jsoncpp_lib
 )
 
 # If you want to use jsoncpp library, remember to link it!

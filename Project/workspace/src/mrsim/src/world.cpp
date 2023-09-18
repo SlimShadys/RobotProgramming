@@ -1,4 +1,5 @@
 #include "world.h"
+#include "robot.h"
 
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgcodecs.hpp>
@@ -7,71 +8,26 @@
 
 using namespace std;
 
-World::World() { 
-  memset(items, 0, sizeof(WorldItem *) * MAX_ITEMS); 
+World::World() {}
+
+WorldItem::WorldItem(std::shared_ptr<World> w_, const Pose& p_)
+    : world(w_), parent(nullptr), pose_in_parent(p_) {
+  if (world) world->add(this);
 }
 
-WorldItem::WorldItem(std::shared_ptr<World> w_, const Pose &p)
-{
-  parent = 0;
-  world = w_;
-  pose = p;
-  if (world)
-  {
-    bool result = world->add(this);
-    if (!result)
-      throw std::runtime_error("world full");
-  }
+WorldItem::WorldItem(std::shared_ptr<WorldItem> parent_, const Pose& p)
+    : world(parent_->world), parent(parent_), pose_in_parent(p) {
+  if (world) world->add(this);
 }
 
-WorldItem::WorldItem(std::shared_ptr<WorldItem> p_, const Pose &p)
-{
-  parent = p_;
-  world = parent->world;
-  pose = p;
-  if (world)
-  {
-    bool result = world->add(this);
-    if (!result)
-      throw std::runtime_error("world full");
-  }
+WorldItem::~WorldItem() {}
+
+Pose WorldItem::poseInWorld() {
+  if (!parent) return pose_in_parent;
+  return parent->poseInWorld() * pose_in_parent;
 }
 
-WorldItem::~WorldItem()
-{
-  // Let's first check if the world is not null
-  if(world) {
-    // Cycle throughout the whole items of the world
-    for (int i = 0; i < world->num_items; ++i) {
-      if(!world->items[i]) {
-        // Still no link. Let's move to the next one
-        continue;
-      } else if (world->items[i] == this) { // I found a proper item. Let's check if it's linked to this instance
-        world->items[i] = 0; // Remove this from world->items
-      } else {
-        // This item is not linked to this instance, but it's still part of the world
-      }
-
-      // If a world item is linked to 'this',  then
-      //  replace 'this' with 'this->parent' to
-      //  remove 'this' from the items chain.
-      if (world->items[i]->parent.get() == this) {
-        world->items[i]->parent = parent;
-      }
-    }
-  } else {
-    // Nothing to do here since the item is not linked to any world.
-  }
-}
-
-Pose WorldItem::poseInWorld()
-{
-  if (!parent)
-    return pose;
-  return parent->poseInWorld() * pose;
-}
-
-void World::loadFromImage(const char *filename)
+void World::loadFromImage(const std::string filename)
 {
   cerr << "Loading [" << filename << "]" << endl;
   cv::Mat m = cv::imread(filename);
@@ -81,10 +37,10 @@ void World::loadFromImage(const char *filename)
   }
   cv::cvtColor(m, _display_image, cv::COLOR_BGR2GRAY);
   size = _display_image.rows * _display_image.cols;
-  grid = new uint8_t[_display_image.rows * _display_image.cols];
+  grid = std::vector<uint8_t>(size, 0x00);
   rows = _display_image.rows;
   cols = _display_image.cols;
-  memcpy(grid, _display_image.data, size);
+  memcpy(grid.data(), _display_image.data, size);
 }
 
 bool World::collides(const IntPoint &p, const int &radius) const
@@ -102,54 +58,25 @@ bool World::collides(const IntPoint &p, const int &radius) const
       IntPoint p_test = p + IntPoint(r, c);
       if (!inside(p_test))
         return true;
-      if (at(p_test) < 50) // Pixels darker than 50 (0 black | 225 white) are marked as obstacles
+      if (at(p_test) < 127) // Pixels darker than 127 (0 black | 225 white) are marked as obstacles
         return true;
     }
   }
   return false;
 }
 
-void World::draw(float rotationV, float translationV)
-{
-  memcpy(_display_image.data, grid, size);
-  for (int i = 0; i < num_items; ++i)
-  {
-    if (items[i])
-      items[i]->draw();
-  }
+void World::draw() {
+  for (const auto item : _items) item->draw();
 
-  cv::Point text_position(0, 30);   //  Declaring the text position     //
-  cv::Point text_position2(0, 60);  //  Declaring the text position     //
-  cv::Scalar font_Color(0, 0, 0);   //  Declaring the color of the font //
-
-  int font_size = 1;
-  int font_weight = 1;
-
-  cv::putText(_display_image, "Rotation velocity   : " + to_string(rotationV), text_position, 0, font_size, font_Color, font_weight);
-  cv::putText(_display_image, "Translation velocity : " + to_string(translationV), text_position2, 0, font_size, font_Color, font_weight);
-
-  cv::imshow("map", _display_image);
+  cv::imshow("Map", _display_image);
+  memcpy(_display_image.data, grid.data(), size); // Clean the display image
 }
 
-void World::timeTick(float dt)
-{
-  for (int i = 0; i < num_items; ++i)
-  {    
-    if (items[i] != nullptr)
-      items[i]->timeTick(dt);
-  }
+void World::timeTick(float dt) {
+  for (const auto item : _items) item->timeTick(dt);
 }
 
-bool World::add(WorldItem* item)
-{
-  if (num_items < MAX_ITEMS)
-  {
-    items[num_items] = item;
-    ++num_items;
-    return true;
-  }
-  return false;
-}
+void World::add(WorldItem* item) { _items.push_back(item); }
 
 bool World::traverseBeam(IntPoint &endpoint, const IntPoint &origin,
                          const float angle, const int max_range) {
@@ -160,10 +87,10 @@ bool World::traverseBeam(IntPoint &endpoint, const IntPoint &origin,
     endpoint = IntPoint(p0.x, p0.y);
     if (!inside(endpoint))
       return false;
-    if (at(endpoint) < 80)
+    if (at(endpoint) < 127)
       return true;
     p0 = p0 + dp;
     --range_to_go;
   }
-  return false;
+  return true;
 }
