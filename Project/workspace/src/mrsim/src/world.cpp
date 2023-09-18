@@ -22,6 +22,15 @@ WorldItem::WorldItem(std::shared_ptr<WorldItem> parent_, const Pose& p)
 
 WorldItem::~WorldItem() {}
 
+/*
+ * This is how poseInWorld() is computed for childrens
+ * If you need to test this, run it in mrsim_node.cpp
+*/
+//Pose toShow = parentRobotSharedPtr->pose_in_parent.translation + robotSharedPtr->pose_in_parent.translation;
+//toShow.theta = parentRobotSharedPtr->pose_in_parent.theta + robotSharedPtr->pose_in_parent.theta;
+//cout << "Pose in world of child[" << id << "]: " << toShow << endl;
+//cout << "Pose in world of child[" << id << "] poseInWorld(): " << robotSharedPtr->poseInWorld() << endl; // Same as above
+//cout << "-------------------------------------------" << endl;
 Pose WorldItem::poseInWorld() {
   if (!parent) return pose_in_parent;
   return parent->poseInWorld() * pose_in_parent;

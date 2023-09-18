@@ -26,6 +26,9 @@ Robot::Robot(int id_, string type_, string frame_id_, string namespace_,
     max_rv = max_rv_;
     max_tv = max_tv_;
     parent = parent_;
+    isChild = false;
+    w = w_;
+    relativePose = pose_;
 }
 
 Robot::Robot(int id_, string type_, string frame_id_, string namespace_,
@@ -40,6 +43,9 @@ Robot::Robot(int id_, string type_, string frame_id_, string namespace_,
     max_rv = max_rv_;
     max_tv = max_tv_;
     parent = parent_;
+    isChild = true;
+    p = p_;
+    relativePose = pose_;
 }
 
 void Robot::draw() {
@@ -50,12 +56,48 @@ void Robot::draw() {
 }
 
 void Robot::timeTick(float dt) {
+
   Pose motion(tv * dt, 0, rv * dt);
+  
+  Pose temp = Pose();
 
-  Pose next_pose = pose_in_parent * motion;
+  if(this->isChild) {
+    temp = this->p->pose_in_parent;
+    temp.translation = temp.translation + this->relativePose.translation;
+  } else {
+    temp = poseInWorld();
+  }
 
-  IntPoint ip = world->world2grid(next_pose.translation);
+  Pose next_pose = temp * motion;
+  IntPoint ip = IntPoint();
+  
+  ip = world->world2grid(next_pose.translation);
 
   int int_radius = radius * world->inv_res;
-  if (!world->collides(ip, int_radius)) pose_in_parent = next_pose;
+
+  // if(this->id == 2) {
+  //   cout << "-------------------------------------------" << endl;
+  //   cout << "Pose for ID 2: " << temp << endl;    
+  //   cout << "New motion for robot with ID 2: " << motion << endl;
+  //   cout << "New ip for robot with ID 2: " << ip << endl;
+  //   cout << "-------------------------------------------" << endl;
+  // }
+
+  // if(this->id == 0) {
+  //   cout << "Pose for ID 0: " << temp << endl;
+  //   cout << "New motion for robot with ID 0: " << motion << endl;
+  //   cout << "New ip for robot with ID 0: " << ip << endl;
+  // }
+
+  if (!world->collides(ip, int_radius)) { // We have not collided, so let's update the position
+    if(!isChild) {
+      pose_in_parent = next_pose;
+    }
+  } else { // We have collided. Here we must implement the collision mechanism for stopping both parent/child, but..
+    if(isChild) {
+      //cout << "Child collided!" << endl;
+    } else {
+      //cout << "Parent collided!" << endl;
+    }
+  }
 }

@@ -29,8 +29,15 @@ class Robot : public WorldItem {
 
   int parent;
 
+  Pose relativePose;
+
   float tv = 0;
   float rv = 0;
   float max_rv;
   float max_tv;
+
+  std::shared_ptr<World> w = nullptr;
+  std::shared_ptr<WorldItem> p = nullptr;
+
+  bool isChild;
 };

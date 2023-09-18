@@ -90,10 +90,10 @@ int main(int argc, char** argv) {
 
         // Let's define the Robot Pose
         Pose robotPose = Pose();
-        robotPose.translation = worldSharedPtr->grid2world(IntPoint(poseX, poseY));
-        robotPose.theta = poseTheta;
 
         if(parent == -1) {  // It means that this Robot is a completely new Robot with no parent
+          robotPose.translation = worldSharedPtr->grid2world(IntPoint(poseX, poseY));
+          robotPose.theta = poseTheta;
           /**
            * If we pass directly a Robot object inside make_shared, we are trying to create a shared pointer from an already constructed object,
            * which is not how std::make_shared is intended to be used.
@@ -106,15 +106,14 @@ int main(int argc, char** argv) {
         } else {
           // If we want to place a Robot on top of another one, we must first get who's the parent and, eventually, its pose.
           std::shared_ptr<Robot> parentRobotSharedPtr = robotsPointersMap[parent];
-
+          //cout << "Pose in world of parent[" << parentRobotSharedPtr->id <<"]: " << parentRobotSharedPtr->pose_in_parent << endl;
           if (parentRobotSharedPtr == nullptr) { // Doesn't exists?
             cerr << "Watch out. The parent you specified for child with ID[" << id << "] doesn't exist. Check your JSON file."<< endl;
           }
 
           // Apply offsets if specified
-          if (poseX != 0 || poseY != 0) {
-            robotPose.translation = robotPose.translation + Point(poseX, poseY);
-          }
+          robotPose.translation = Point(poseX, poseY);
+          robotPose.theta = poseTheta;
 
           // Now let's define the Robot which will sit on top of the parent
           std::shared_ptr<Robot> robotSharedPtr = std::make_shared<Robot>(id, type, frame_id, namespace_, radius, parentRobotSharedPtr, robotPose, max_rv, max_tv, parent);
