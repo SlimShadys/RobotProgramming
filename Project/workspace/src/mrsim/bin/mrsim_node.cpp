@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
                                         });
 
   // Get Robots and Lidars
-  shared_ptr<Robot> robotP = getRobotsAndLidars(worldSharedPtr, root);
+  getRobotsAndLidars(worldSharedPtr, root);
   
   float delay = 0.07;
   int k;
@@ -82,35 +82,13 @@ int main(int argc, char** argv) {
     w.timeTick(delay);
     w.draw();
 
-    k = cv::waitKeyEx(delay*1000)&255;
-    switch (k) {
-      case 81:  // Left arrow
-        robotP->rv += 0.10;
-        break;  
-      case 82:  // Up arrow
-        robotP->tv += 0.2;
-        break;  
-      case 83:  // Right arrow
-        robotP->rv -= 0.10;
-        break;  
-      case 84:  // Down arrow
-        robotP->tv -= 0.2;
-        break;  
-      case ' ':  // Spacebar
-        robotP->tv = 0;
-        robotP->rv = 0;
-        robotP->pose_in_parent.theta = 0;
-        break;
-      case 27:  // Esc
-        return 0;
-      default:
-        //robotP->rv = 0;
-        continue;
-    }
-
-    // visualize the simulation
-    cv::waitKey(100);
+    k = cv::waitKeyEx(1)&255;
+    if (k == 27) {     // Esc
+      ros::shutdown(); // Terminate the ROS node
+      break; 
+    } 
   }
 
+  cv::destroyAllWindows(); // Destroy the CV2 window used for drawing
   return 0;
 }

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-shared_ptr<Robot> getRobotsAndLidars(shared_ptr<World> worldSharedPointer, Json::Value root)
+void getRobotsAndLidars(shared_ptr<World> worldSharedPointer, Json::Value root)
 {
   map<int, shared_ptr<Robot>> robotsPointersMap;
   map<int, shared_ptr<Lidar>> lidarsPointersMap;
@@ -131,11 +131,11 @@ shared_ptr<Robot> getRobotsAndLidars(shared_ptr<World> worldSharedPointer, Json:
         lidarsCounter++;
       } else {
         ROS_ERROR_STREAM("What kind of type are your trying to add, bro? Accepted types are 'robot' and 'lidar'.");
-        return nullptr;
+        return;
       }
   }
 
   cout << "Added " << robotsCounter << " robots to the world." << endl;
   cout << "Added " << lidarsCounter << " lidars to the world." << endl;
-  return robotsPointersMap[0];
+  return;
 }

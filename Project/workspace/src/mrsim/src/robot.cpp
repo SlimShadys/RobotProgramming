@@ -4,6 +4,7 @@
 
 #include "ros/ros.h"
 #include "nav_msgs/Odometry.h"
+#include "geometry_msgs/Twist.h"
 
 using namespace std;
 
@@ -33,12 +34,12 @@ Robot::Robot(int id_, string type_, string frame_id_, string namespace_,
     w = w_;
     relativePose = pose_;
     
-    // Initialize the Odometry topic name based on the robot's ID and namespace
+    // Initialize the Odometry/cmdVel topic name based on the robot namespace
     odom_topic = "/" + namespace_ + "/odom";
+    cmdVel_topic = "/" + namespace_ + "/cmd_vel";
 
-    // Initialize the Odometry publisher
-    robotOdometryPublisher = nh.advertise<nav_msgs::Odometry>(odom_topic, 1000);
-        
+    robotOdometryPublisher = nh.advertise<nav_msgs::Odometry>(odom_topic, 1000); // Initialize the Odometry publisher
+    cmdVelSubscriber = nh.subscribe(cmdVel_topic, 10, &Robot::cmdVelCallback, this); // Initialize the cmdVel Subscriber
 }
 
 Robot::Robot(int id_, string type_, string frame_id_, string namespace_,
@@ -57,11 +58,12 @@ Robot::Robot(int id_, string type_, string frame_id_, string namespace_,
     p = p_;
     relativePose = pose_;
 
-    // Initialize the Odometry topic name based on the robot's ID and namespace
+    // Initialize the Odometry/cmdVel topic name based on the robot namespace
     odom_topic = "/" + namespace_ + "/odom";
+    cmdVel_topic = "/" + namespace_ + "/cmd_vel";
 
-    // Initialize the Odometry publisher
-    robotOdometryPublisher = nh.advertise<nav_msgs::Odometry>(odom_topic, 1000);
+    robotOdometryPublisher = nh.advertise<nav_msgs::Odometry>(odom_topic, 1000); // Initialize the Odometry publisher
+    cmdVelSubscriber = nh.subscribe(cmdVel_topic, 10, &Robot::cmdVelCallback, this); // Initialize the cmdVel Subscriber
 }
 
 void Robot::draw() {
@@ -82,14 +84,25 @@ void clampVelocity(float& vel, float maxVel, const string& message) {
   }
 }
 
+// Callback function for cmd_vel topic
+void Robot::cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg) {
+  // Extract linear and angular velocities from the received message
+  float linear_vel = msg->linear.x;
+  float angular_vel = msg->angular.x;
+
+  clampVelocity(linear_vel, max_tv, "Translation velocity exceeded for robot with ID[" + to_string(id) + "]!");
+  clampVelocity(angular_vel, max_rv, "Rotational velocity exceeded for robot with ID[" + to_string(id) + "]!");
+
+  // Update the Robot's velocities
+  tv = linear_vel;
+  rv = angular_vel;
+}
+
 void Robot::timeTick(float dt) {
 
   // Populate the Odometry message and publish it
   odom.header.stamp = ros::Time::now();
   odom.header.frame_id = "map";
-
-  clampVelocity(tv, max_tv, "Translation velocity exceeded for robot with ID[" + to_string(id) + "]!");
-  clampVelocity(rv, max_rv, "Rotational velocity exceeded for robot with ID[" + to_string(id) + "]!");
 
   Pose motion(tv * dt, 0, rv * dt);
   

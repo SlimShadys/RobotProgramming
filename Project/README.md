@@ -13,9 +13,9 @@ The task is to extend the 2D Robot simulator illustrated during the course by im
 ⚠️ = Work in progress<br>
 ✅ = Done<br>
 
-- Implementing **ROS** Support | ⚠️
+- Implementing **ROS** Support | ⚠️ (90%)
 - Implementing a configuration system by file | ✅
-- Complete the CMakeLists provided by us | ⚠️
+- Complete the CMakeLists provided by us | ✅
 
 ## Run the code
 To launch this simulator, run its node as follows:

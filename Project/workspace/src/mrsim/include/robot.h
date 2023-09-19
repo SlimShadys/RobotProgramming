@@ -6,6 +6,7 @@
 
 #include "ros/ros.h"
 #include "nav_msgs/Odometry.h"
+#include "geometry_msgs/Twist.h"
 
 using namespace std;
 
@@ -23,7 +24,9 @@ class Robot : public WorldItem {
 
   void draw() override;
   void timeTick(float dt) override;
-  
+
+  void cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg);
+
   int id;
   string type;
   string frame_id;
@@ -47,6 +50,8 @@ class Robot : public WorldItem {
 
   ros::NodeHandle nh;                      // Handler for Robot
   ros::Publisher robotOdometryPublisher;   // Publisher
+  ros::Subscriber cmdVelSubscriber;        // Subscriber for cmd_vel topic
   nav_msgs::Odometry odom;                 // Odometry message
   string odom_topic;                       // Odometry topic
+  string cmdVel_topic;                     // cmd_vel topic
 };
