@@ -60,6 +60,7 @@ add_library(mrsim SHARED  # Library
     src/world.cpp
     src/lidar.cpp
     src/simple_geometry.cpp
+    src/misc.cpp
 )
 
 target_include_directories(mrsim PUBLIC  # Include dirs
