@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Lidar::Lidar(float fov_, float max_range_, int num_beams_, std::shared_ptr<World> w, const Pose& pose_):
+Lidar::Lidar(float fov_, float max_range_, int num_beams_, shared_ptr<World> w, const Pose& pose_):
   WorldItem(w,pose_),
   fov(fov_),
   max_range(max_range_),
@@ -13,7 +13,7 @@ Lidar::Lidar(float fov_, float max_range_, int num_beams_, std::shared_ptr<World
   ranges = new float[num_beams];
   }
 
-Lidar::Lidar(float fov_, float max_range_, int num_beams_, std::shared_ptr<WorldItem> p_, const Pose& pose_):
+Lidar::Lidar(float fov_, float max_range_, int num_beams_, shared_ptr<WorldItem> p_, const Pose& pose_):
   WorldItem(p_,pose_),
   fov(fov_),
   max_range(max_range_),
@@ -21,7 +21,7 @@ Lidar::Lidar(float fov_, float max_range_, int num_beams_, std::shared_ptr<World
   ranges = new float[num_beams];
   }
 
-  Lidar::Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, std::shared_ptr<World> w, 
+  Lidar::Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, shared_ptr<World> w, 
   const Pose &pose_, float max_range_, int num_beams_, int parent_):
   WorldItem(w, pose_)
   {
@@ -37,7 +37,7 @@ Lidar::Lidar(float fov_, float max_range_, int num_beams_, std::shared_ptr<World
   }
 
 
-  Lidar::Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, std::shared_ptr<WorldItem> p_, 
+  Lidar::Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, shared_ptr<WorldItem> p_, 
   const Pose &pose_, float max_range_, int num_beams_, int parent_):
   WorldItem(p_, pose_)
   {

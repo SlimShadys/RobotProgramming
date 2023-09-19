@@ -10,12 +10,12 @@ using namespace std;
 
 World::World() {}
 
-WorldItem::WorldItem(std::shared_ptr<World> w_, const Pose& p_)
+WorldItem::WorldItem(shared_ptr<World> w_, const Pose& p_)
     : world(w_), parent(nullptr), pose_in_parent(p_) {
   if (world) world->add(this);
 }
 
-WorldItem::WorldItem(std::shared_ptr<WorldItem> parent_, const Pose& p)
+WorldItem::WorldItem(shared_ptr<WorldItem> parent_, const Pose& p)
     : world(parent_->world), parent(parent_), pose_in_parent(p) {
   if (world) world->add(this);
 }
@@ -36,17 +36,17 @@ Pose WorldItem::poseInWorld() {
   return parent->poseInWorld() * pose_in_parent;
 }
 
-void World::loadFromImage(const std::string filename)
+void World::loadFromImage(const string filename)
 {
   cerr << "Loading [" << filename << "]" << endl;
   cv::Mat m = cv::imread(filename);
   if (m.rows == 0)
   {
-    throw std::runtime_error("Unable to load image");
+    throw runtime_error("Unable to load image");
   }
   cv::cvtColor(m, _display_image, cv::COLOR_BGR2GRAY);
   size = _display_image.rows * _display_image.cols;
-  grid = std::vector<uint8_t>(size, 0x00);
+  grid = vector<uint8_t>(size, 0x00);
   rows = _display_image.rows;
   cols = _display_image.cols;
   memcpy(grid.data(), _display_image.data, size);

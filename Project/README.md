@@ -14,11 +14,12 @@ The task is to extend the 2D Robot simulator illustrated during the course by im
 ✅ = Done<br>
 
 - Implementing **ROS** Support | ⚠️
-- Implementing a configuration system by file | ❌
-- Complete the CMakeLists provided by us | ❌
+- Implementing a configuration system by file | ✅
+- Complete the CMakeLists provided by us | ⚠️
 
 ## Run the code
-To launch this simluator, run its node as follows:
+To launch this simulator, run its node as follows:
 ```sh
-rosrun mrsim mrsim_node cappero_1r.json
+rosrun mrsim mrsim_node <config>.json
 ```
+Various configs can be found inside "workspace/src/mrsim/test_data/" directory.

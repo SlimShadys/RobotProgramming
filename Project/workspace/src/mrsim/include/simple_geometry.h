@@ -2,6 +2,8 @@
 #include <cmath>
 #include <iostream>
 
+using namespace std;
+
 struct Point {
   float x,  y;
   Point(const float& x_=0, const float& y_=0):
@@ -73,8 +75,8 @@ struct Pose {
 
 };
 
-std::ostream& operator << (std::ostream& os, const Point& p);
+ostream& operator << (ostream& os, const Point& p);
 
-std::ostream& operator << (std::ostream& os, const IntPoint& p);
+ostream& operator << (ostream& os, const IntPoint& p);
 
-std::ostream& operator << (std::ostream& os, const Pose& pose);
+ostream& operator << (ostream& os, const Pose& pose);

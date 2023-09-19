@@ -1,4 +1,5 @@
 #include "simple_geometry.h"
+
 using namespace std;
 
 ostream& operator << (ostream& os, const Point& p) {

@@ -15,8 +15,8 @@ using namespace std;
 int main(int argc, char** argv) {
 
   // We might want a function that returns both maps for Lidars/Robots
-  //std::map<int, std::shared_ptr<Robot>> robotsPointersMap; 
-  //std::map<int, std::shared_ptr<Lidar>> lidarsPointersMap;
+  //map<int, shared_ptr<Robot>> robotsPointersMap; 
+  //map<int, shared_ptr<Lidar>> lidarsPointersMap;
 
   ros::init(argc, argv, "mrsim_node");
   ros::NodeHandle nh("/");
@@ -31,12 +31,12 @@ int main(int argc, char** argv) {
   }
 
   // We get the path of the JSON file from the arguments
-  const std::string jsonFilePath = argv[1];
+  const string jsonFilePath = argv[1];
 
   // Read and parse the JSON file
   Json::Value root;
   Json::Reader reader;
-  std::ifstream jsonFile(("/home/lattinone/RobotProgramming/Project/workspace/src/mrsim/test_data/" + jsonFilePath).c_str(), std::ifstream::binary); // We need a way to remove absolute path
+  ifstream jsonFile(("/home/lattinone/RobotProgramming/Project/workspace/src/mrsim/test_data/" + jsonFilePath).c_str(), ifstream::binary); // We need a way to remove absolute path
   
   // Let's check if the JSON is properly written and decoded.
   if (!jsonFile.good()) {
@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
   }
 
   // We access the map file
-  std::string mapFileName = root["map"].asString();
+  string mapFileName = root["map"].asString();
 
   // Create a World object
   World w = World();
@@ -62,14 +62,14 @@ int main(int argc, char** argv) {
    * We instantiate the World in the same way we instantiate Robots/Lidars in getRobotsAndLidars().
    * Check comments there.
    * */
-  std::shared_ptr<World> worldSharedPtr(&w,
+  shared_ptr<World> worldSharedPtr(&w,
                                         [](World* w) {
                                             // Custom cleanup actions here, if needed
                                             //delete w; // Clean up the Robot object
                                         });
 
   // Get Robots and Lidars
-  std::shared_ptr<Robot> robotP = getRobotsAndLidars(worldSharedPtr, root);
+  shared_ptr<Robot> robotP = getRobotsAndLidars(worldSharedPtr, root);
   
   float delay = 0.07;
   int k;

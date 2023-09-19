@@ -7,10 +7,10 @@
 
 using namespace std;
 
-std::shared_ptr<Robot> getRobotsAndLidars(std::shared_ptr<World> worldSharedPointer, Json::Value root)
+shared_ptr<Robot> getRobotsAndLidars(shared_ptr<World> worldSharedPointer, Json::Value root)
 {
-  map<int, std::shared_ptr<Robot>> robotsPointersMap;
-  map<int, std::shared_ptr<Lidar>> lidarsPointersMap;
+  map<int, shared_ptr<Robot>> robotsPointersMap;
+  map<int, shared_ptr<Lidar>> lidarsPointersMap;
 
   int robotsCounter = 0;
   int lidarsCounter = 0;
@@ -61,7 +61,7 @@ std::shared_ptr<Robot> getRobotsAndLidars(std::shared_ptr<World> worldSharedPoin
            * 
            * Thx ChatGPT :)
           */
-          std::shared_ptr<Robot> robotSharedPtr(new Robot(id, type, frame_id, namespace_, radius, worldSharedPointer, robotPose, max_rv, max_tv, parent),
+          shared_ptr<Robot> robotSharedPtr(new Robot(id, type, frame_id, namespace_, radius, worldSharedPointer, robotPose, max_rv, max_tv, parent),
                                                 [](Robot* r) {
                                                     // Custom cleanup actions here, if needed
                                                     //delete r; // Clean up the Robot object
@@ -80,7 +80,7 @@ std::shared_ptr<Robot> getRobotsAndLidars(std::shared_ptr<World> worldSharedPoin
           robotPose.theta = poseTheta;
 
           // Now let's define the Robot which will sit on top of the parent
-          std::shared_ptr<Robot> robotSharedPtr(new Robot(id, type, frame_id, namespace_, radius, parentRobotSharedPtr, robotPose, max_rv, max_tv, parent),
+          shared_ptr<Robot> robotSharedPtr(new Robot(id, type, frame_id, namespace_, radius, parentRobotSharedPtr, robotPose, max_rv, max_tv, parent),
                                       [](Robot* r) {
                                           // Custom cleanup actions here, if needed
                                           //delete r; // Clean up the Robot object
@@ -100,7 +100,7 @@ std::shared_ptr<Robot> getRobotsAndLidars(std::shared_ptr<World> worldSharedPoin
         lidarPose.theta = poseTheta;
 
         if(parent == -1) {  // It means that this Lidar is a completely new Lidar with no parent. It lives in the world.
-          std::shared_ptr<Lidar> lidarSharedPtr(new Lidar(id, type, frame_id, namespace_, fov, worldSharedPointer, lidarPose, max_range, num_beams, parent),
+          shared_ptr<Lidar> lidarSharedPtr(new Lidar(id, type, frame_id, namespace_, fov, worldSharedPointer, lidarPose, max_range, num_beams, parent),
                                                 [](Lidar* l) {
                                                     // Custom cleanup actions here, if needed
                                                     //delete l; // Clean up the Lidar object
@@ -121,7 +121,7 @@ std::shared_ptr<Robot> getRobotsAndLidars(std::shared_ptr<World> worldSharedPoin
           }
 
           // Now let's define the Robot which will sit on top of the parent
-          std::shared_ptr<Lidar> lidarSharedPtr(new Lidar(id, type, frame_id, namespace_, fov, parentRobotSharedPtr, lidarPose, max_range, num_beams, parent),
+          shared_ptr<Lidar> lidarSharedPtr(new Lidar(id, type, frame_id, namespace_, fov, parentRobotSharedPtr, lidarPose, max_range, num_beams, parent),
                                       [](Lidar* l) {
                                           // Custom cleanup actions here, if needed
                                           //delete l; // Clean up the Lidar object

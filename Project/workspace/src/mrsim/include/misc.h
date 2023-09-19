@@ -10,4 +10,4 @@
 using namespace std;
 
 // Todo - We are passing a simple Robot for testing
-std::shared_ptr<Robot> getRobotsAndLidars(std::shared_ptr<World> worldSharedPointer, Json::Value root);
+shared_ptr<Robot> getRobotsAndLidars(shared_ptr<World> worldSharedPointer, Json::Value root);

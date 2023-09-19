@@ -4,6 +4,8 @@
 
 #include "simple_geometry.h"
 
+using namespace std;
+
 struct WorldItem;
 
 class World {
@@ -28,7 +30,7 @@ class World {
     return Point(p.x * res, p.y * res);
   }
 
-  void loadFromImage(const std::string filename);
+  void loadFromImage(const string filename);
 
   bool traverseBeam(IntPoint& endpoint, const IntPoint& origin,
                     const float angle, const int max_range);
@@ -42,8 +44,8 @@ class World {
   int size = 0;
   float res = 0.05, inv_res = 20.0;
 
-  std::vector<WorldItem*> _items;
-  std::vector<uint8_t> grid;
+  vector<WorldItem*> _items;
+  vector<uint8_t> grid;
 
   cv::Mat _display_image;  // display purposes
 
@@ -51,8 +53,8 @@ class World {
 
 class WorldItem {
  public:
-  WorldItem(std::shared_ptr<World> w_, const Pose& p = Pose());
-  WorldItem(std::shared_ptr<WorldItem> parent_, const Pose& p = Pose());
+  WorldItem(shared_ptr<World> w_, const Pose& p = Pose());
+  WorldItem(shared_ptr<WorldItem> parent_, const Pose& p = Pose());
   ~WorldItem();
 
   Pose poseInWorld();
@@ -61,6 +63,6 @@ class WorldItem {
   virtual void timeTick(float dt) = 0;
 
   Pose pose_in_parent;
-  std::shared_ptr<World> world = nullptr;
-  std::shared_ptr<WorldItem> parent = nullptr;
+  shared_ptr<World> world = nullptr;
+  shared_ptr<WorldItem> parent = nullptr;
 };
