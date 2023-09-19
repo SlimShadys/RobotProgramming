@@ -1,5 +1,6 @@
 #pragma once
 #include "world.h"
+
 #include <iostream>
 #include <string>
 
@@ -22,7 +23,7 @@ class Robot : public WorldItem {
 
   void draw() override;
   void timeTick(float dt) override;
-
+  
   int id;
   string type;
   string frame_id;

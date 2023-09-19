@@ -1,7 +1,11 @@
 #pragma once
 #include "world.h"
-#include "string.h"
+
 #include <iostream>
+#include <string>
+
+#include "ros/ros.h"
+#include <sensor_msgs/LaserScan.h>
 
 using namespace std;
 
@@ -22,7 +26,9 @@ public:
   void timeTick(float dt);
 
   void draw();
-  
+
+  void publishLidarScan(); // Method to publish LaserScan data
+
   int id;
   string type;
   string frame_id;
@@ -33,4 +39,11 @@ public:
   float max_range;
   int num_beams;
   float *ranges;
+
+  bool isChild;
+
+  ros::NodeHandle nh;                      // Handler for Lidar
+  ros::Publisher lidarScanPublisher;       // Publisher
+  sensor_msgs::LaserScan lscan;            // LaserScan message
+  string lscan_topic;                      // LaserScan topic
 };

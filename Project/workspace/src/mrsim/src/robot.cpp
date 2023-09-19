@@ -37,7 +37,7 @@ Robot::Robot(int id_, string type_, string frame_id_, string namespace_,
     odom_topic = "/" + namespace_ + "/odom";
 
     // Initialize the Odometry publisher
-    robotOdometryPublisher = nh.advertise<nav_msgs::Odometry>(odom_topic, 10);
+    robotOdometryPublisher = nh.advertise<nav_msgs::Odometry>(odom_topic, 1000);
         
 }
 
@@ -61,7 +61,7 @@ Robot::Robot(int id_, string type_, string frame_id_, string namespace_,
     odom_topic = "/" + namespace_ + "/odom";
 
     // Initialize the Odometry publisher
-    robotOdometryPublisher = nh.advertise<nav_msgs::Odometry>(odom_topic, 10);
+    robotOdometryPublisher = nh.advertise<nav_msgs::Odometry>(odom_topic, 1000);
 }
 
 void Robot::draw() {
@@ -71,11 +71,25 @@ void Robot::draw() {
              cv::Scalar::all(0), -1);
 }
 
+// Function for clamping velocities based on max_rv and max_tv
+void clampVelocity(float& vel, float maxVel, const string& message) {
+  if (vel > maxVel) {
+    vel = maxVel;
+    ROS_WARN_STREAM(message << " Maximum speed reached: " << vel);
+  } else if (vel < -maxVel) {
+    vel = -maxVel;
+    ROS_WARN_STREAM(message << " Maximum speed reached: " << vel);
+  }
+}
+
 void Robot::timeTick(float dt) {
 
   // Populate the Odometry message and publish it
   odom.header.stamp = ros::Time::now();
   odom.header.frame_id = "map";
+
+  clampVelocity(tv, max_tv, "Translation velocity exceeded for robot with ID[" + to_string(id) + "]!");
+  clampVelocity(rv, max_rv, "Rotational velocity exceeded for robot with ID[" + to_string(id) + "]!");
 
   Pose motion(tv * dt, 0, rv * dt);
   
@@ -127,10 +141,19 @@ void Robot::timeTick(float dt) {
   //   cout << "New motion for robot with ID 0: " << motion << endl;
   //   cout << "New ip for robot with ID 0: " << ip << endl;
   // }
-
   if (!world->collides(ip, int_radius)) { // We have not collided, so let's update the position
+
     if(!isChild) {
       pose_in_parent = next_pose;
+      // Populate the odometry data here (position and orientation)
+      odom.pose.pose.position.x = pose_in_parent.translation.x * w->res;
+      odom.pose.pose.position.y = pose_in_parent.translation.y * w->res;
+      odom.pose.pose.orientation.x = pose_in_parent.theta; // Assuming theta represents orientation
+    } else { // We have a children, so let's take p-> | THIS CRASHES IF WE HAVE 3 ROBOTS ON TOP OF EACH OTHER
+      // Populate the odometry data here (position and orientation)
+      odom.pose.pose.position.x = next_pose.translation.x * p->world->res;
+      odom.pose.pose.position.y = next_pose.translation.y * p->world->res;
+      odom.pose.pose.orientation.x = next_pose.theta; // Assuming theta represents orientation   
     }
   } else { // We have collided. Here we must implement the collision mechanism for stopping both parent/child, but..
     if(isChild) {
@@ -141,9 +164,9 @@ void Robot::timeTick(float dt) {
   }
 
   // Populate the odometry data here (position and orientation)
-  odom.pose.pose.position.x = next_pose.translation.x;
-  odom.pose.pose.position.y = next_pose.translation.y;
-  odom.pose.pose.orientation.x = next_pose.theta; // Assuming theta represents orientation
+  //ROS_INFO_STREAM("ID[" << id << "]: odom.pose.pose.position.x -> " << odom.pose.pose.position.x << endl);
+  //ROS_INFO_STREAM("ID[" << id << "]: odom.pose.pose.position.y -> " << odom.pose.pose.position.y << endl);
+  //ROS_INFO_STREAM("ID[" << id << "]: odom.pose.pose.orientation.x -> " << odom.pose.pose.orientation.x << endl);
 
   // Publish the Odometry message
   robotOdometryPublisher.publish(odom);

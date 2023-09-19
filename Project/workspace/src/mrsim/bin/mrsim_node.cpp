@@ -104,7 +104,7 @@ int main(int argc, char** argv) {
       case 27:  // Esc
         return 0;
       default:
-        robotP->rv = 0;
+        //robotP->rv = 0;
         continue;
     }
 
