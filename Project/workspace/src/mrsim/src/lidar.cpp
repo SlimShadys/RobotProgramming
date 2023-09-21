@@ -5,67 +5,60 @@
 
 #include <sensor_msgs/LaserScan.h>
 
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2/LinearMath/Transform.h>
+#include <tf2/convert.h> 
+
+#include <tf2_ros/transform_broadcaster.h>
+#include <tf2_eigen/tf2_eigen.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+
 using namespace std;
 
-Lidar::Lidar(float fov_, float max_range_, int num_beams_, shared_ptr<World> w, const Pose& pose_):
-  WorldItem(w,pose_),
-  fov(fov_),
-  max_range(max_range_),
-  num_beams(num_beams_){
+Lidar::Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, shared_ptr<World> w, 
+const Pose &pose_, float max_range_, int num_beams_, int parent_):
+WorldItem(w, pose_, frame_id_), nh("~")
+{
+  id = id_;
+  type = type_;
+  frame_id = frame_id_;
+  namespc = namespace_;
+  fov = fov_;
+  max_range = max_range_;
+  num_beams = num_beams_;
+  parent = parent_;
   ranges = new float[num_beams];
-  }
+  parentFrameID = w->worldFrameID; // "map"
 
-Lidar::Lidar(float fov_, float max_range_, int num_beams_, shared_ptr<WorldItem> p_, const Pose& pose_):
-  WorldItem(p_,pose_),
-  fov(fov_),
-  max_range(max_range_),
-  num_beams(num_beams_){
+  // Initialize the LidarScan topic name based on the Lidar namespace
+  lscan_topic = "/" + namespace_ + "/base_scan";
+
+  // Initialize the LidarScan publisher
+  lidarScanPublisher = nh.advertise<sensor_msgs::LaserScan>(lscan_topic, 1000);
+
+}
+
+Lidar::Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, shared_ptr<WorldItem> p_, 
+const Pose &pose_, float max_range_, int num_beams_, int parent_):
+WorldItem(p_, pose_, frame_id_), nh("~")
+{
+  id = id_;
+  type = type_;
+  frame_id = frame_id_;
+  namespc = namespace_;
+  fov = fov_;
+  max_range = max_range_;
+  num_beams = num_beams_;
+  parent = parent_;
   ranges = new float[num_beams];
-  }
+  parentFrameID = p_->itemFrameID; // Anything outside "map"
 
-  Lidar::Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, shared_ptr<World> w, 
-  const Pose &pose_, float max_range_, int num_beams_, int parent_):
-  WorldItem(w, pose_), nh("~")
-  {
-    id = id_;
-    type = type_;
-    frame_id = frame_id_;
-    namespc = namespace_;
-    fov = fov_;
-    max_range = max_range_;
-    num_beams = num_beams_;
-    parent = parent_;
-    ranges = new float[num_beams];
+  // Initialize the LidarScan topic name based on the Lidar namespace
+  lscan_topic = "/" + namespace_ + "/base_scan";
 
-    // Initialize the LidarScan topic name based on the Lidar namespace
-    lscan_topic = "/" + namespace_ + "/base_scan";
-
-    // Initialize the LidarScan publisher
-    lidarScanPublisher = nh.advertise<sensor_msgs::LaserScan>(lscan_topic, 1000);
-
-  }
-
-
-  Lidar::Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, shared_ptr<WorldItem> p_, 
-  const Pose &pose_, float max_range_, int num_beams_, int parent_):
-  WorldItem(p_, pose_), nh("~")
-  {
-    id = id_;
-    type = type_;
-    frame_id = frame_id_;
-    namespc = namespace_;
-    fov = fov_;
-    max_range = max_range_;
-    num_beams = num_beams_;
-    parent = parent_;
-    ranges = new float[num_beams];
-
-    // Initialize the LidarScan topic name based on the Lidar namespace
-    lscan_topic = "/" + namespace_ + "/base_scan";
-
-    // Initialize the LidarScan publisher
-    lidarScanPublisher = nh.advertise<sensor_msgs::LaserScan>(lscan_topic, 1000);
-  }
+  // Initialize the LidarScan publisher
+  lidarScanPublisher = nh.advertise<sensor_msgs::LaserScan>(lscan_topic, 1000);
+}
 
 Lidar::~Lidar() {
   if (ranges)
@@ -74,8 +67,10 @@ Lidar::~Lidar() {
 
 
 void Lidar::timeTick(float dt) {
-  Pose piw=poseInWorld();
+  Pose piw = poseInWorld();
+  
   IntPoint origin=world->world2grid(piw.translation);
+
   if (! world->inside(origin))
     return;
 
@@ -94,13 +89,14 @@ void Lidar::timeTick(float dt) {
     alpha += d_alpha;
   }
   publishLidarScan();
+  transformLidar();
 }
 
 void Lidar::draw() {
-  Pose piw=poseInWorld();
+  Pose piw = poseInWorld();
   IntPoint origin=world->world2grid(piw.translation);
   
-  if (! world->inside(origin))
+  if (!world->inside(origin))
     return;
 
   float d_alpha=fov/num_beams;
@@ -118,21 +114,46 @@ void Lidar::draw() {
 void Lidar::publishLidarScan() {
   // Fill in the LaserScan message with Lidar data
   lscan.header.stamp = ros::Time::now();
-  lscan.header.frame_id = "map";
-  lscan.angle_min = -(this->fov) / 2;                   // Start angle of the scan
-  lscan.angle_max = this->fov / 2;                      // End angle of the scan
-  lscan.angle_increment = this->fov / this->num_beams;  // Angle increment between each measurement
-  lscan.time_increment = 0.0;                           // Time between each scan point (not used)
-  lscan.scan_time = 0.0;                                // Time it took to complete one scan (not used)
-  lscan.range_min = 0.0;                                // Minimum range value
-  lscan.range_max = this->max_range;                    // Maximum range value
+  lscan.header.frame_id = this->itemFrameID;
+  lscan.angle_min = -(fov) / 2;                   // Start angle of the scan
+  lscan.angle_max = fov / 2;                      // End angle of the scan
+  lscan.angle_increment = fov / num_beams;        // Angle increment between each measurement
+  lscan.time_increment = 0.0;                     // Time between each scan point (not used)
+  lscan.scan_time = 0.0;                          // Time it took to complete one scan (not used)
+  lscan.range_min = 0.0;                          // Minimum range value
+  lscan.range_max = max_range;                    // Maximum range value
   lscan.ranges.clear();
 
   // Fill in the range values (assuming 'ranges' is already populated)
-  for (int i = 0; i < this->num_beams; ++i) {
-    lscan.ranges.push_back(this->ranges[i]);
+  for (int i = 0; i < num_beams; ++i) {
+    lscan.ranges.push_back(ranges[i]);
   }
 
   // Publish the LaserScan message
   lidarScanPublisher.publish(lscan);
+}
+
+void Lidar::transformLidar() {
+  // We transform from lidar to robot
+  static tf2_ros::TransformBroadcaster br;
+  geometry_msgs::TransformStamped transform_stamped;
+
+  transform_stamped.header.frame_id = parentFrameID;
+  transform_stamped.child_frame_id = frame_id;
+  transform_stamped.header.stamp = ros::Time::now();
+
+  transform_stamped.transform.translation.x = 0.0;
+  transform_stamped.transform.translation.y = 0.0;
+  transform_stamped.transform.translation.z = 0.0;
+
+  tf2::Quaternion q;
+  q.setRPY(0, 0, 0);
+  q.normalize();
+
+  transform_stamped.transform.rotation.x = q.x();
+  transform_stamped.transform.rotation.y = q.y();
+  transform_stamped.transform.rotation.z = q.z();
+  transform_stamped.transform.rotation.w = q.w();
+
+  br.sendTransform(transform_stamped);
 }

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 if [ "$#" -ne 4 ]; then
     echo "Wrong args | Usage: $0 <topic_name> <linear_x> <linear_y> <angular_x>"
 fi
@@ -16,5 +17,4 @@ rostopic pub /"$topic_name"/cmd_vel geometry_msgs/Twist "linear:
 angular:
   x: $angular_x
   y: 0.0
-  z: 0.0" -r 1
-
+  z: 0.0"

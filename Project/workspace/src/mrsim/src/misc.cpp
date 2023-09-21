@@ -96,10 +96,10 @@ void getRobotsAndLidars(shared_ptr<World> worldSharedPointer, Json::Value root)
 
         // Let's define the Lidar Pose
         Pose lidarPose = Pose();
-        lidarPose.translation = worldSharedPointer->grid2world(IntPoint(poseX, poseY));
-        lidarPose.theta = poseTheta;
 
         if(parent == -1) {  // It means that this Lidar is a completely new Lidar with no parent. It lives in the world.
+          lidarPose.translation = worldSharedPointer->grid2world(IntPoint(poseX, poseY));
+          lidarPose.theta = poseTheta;
           shared_ptr<Lidar> lidarSharedPtr(new Lidar(id, type, frame_id, namespace_, fov, worldSharedPointer, lidarPose, max_range, num_beams, parent),
                                                 [](Lidar* l) {
                                                     // Custom cleanup actions here, if needed
@@ -115,10 +115,9 @@ void getRobotsAndLidars(shared_ptr<World> worldSharedPointer, Json::Value root)
             ROS_ERROR_STREAM("Watch out. The parent you specified for child with ID[" << id << "] doesn't exist. Check your JSON file.");
           }
 
-          // Add the offsets if we specified them in the JSON
-          if (poseX != 0 || poseY != 0) {
-            lidarPose.translation = lidarPose.translation + Point(poseX, poseY);
-          }
+          // Apply offsets if specified
+          lidarPose.translation = Point(poseX, poseY);
+          lidarPose.theta = poseTheta;
 
           // Now let's define the Robot which will sit on top of the parent
           shared_ptr<Lidar> lidarSharedPtr(new Lidar(id, type, frame_id, namespace_, fov, parentRobotSharedPtr, lidarPose, max_range, num_beams, parent),

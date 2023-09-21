@@ -21,13 +21,18 @@ find_package(catkin REQUIRED COMPONENTS
     std_msgs
     geometry_msgs
     message_generation
+    tf2
+    tf2_ros
+    tf2_eigen
 )
 
 catkin_package(
     INCLUDE_DIRS "include/"
     CATKIN_DEPENDS
     roscpp
-
+    tf2 
+    tf2_ros 
+    tf2_eigen
     # Add required ROS dependencies
 )
 

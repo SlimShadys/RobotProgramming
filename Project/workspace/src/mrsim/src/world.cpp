@@ -10,27 +10,18 @@ using namespace std;
 
 World::World() {}
 
-WorldItem::WorldItem(shared_ptr<World> w_, const Pose& p_)
-    : world(w_), parent(nullptr), pose_in_parent(p_) {
+WorldItem::WorldItem(shared_ptr<World> w_, const Pose& p_, string frame_id_)
+    : world(w_), parent(nullptr), pose_in_parent(p_), itemFrameID(frame_id_) {
   if (world) world->add(this);
 }
 
-WorldItem::WorldItem(shared_ptr<WorldItem> parent_, const Pose& p)
-    : world(parent_->world), parent(parent_), pose_in_parent(p) {
+WorldItem::WorldItem(shared_ptr<WorldItem> parent_, const Pose& p, string frame_id_)
+    : world(parent_->world), parent(parent_), pose_in_parent(p), itemFrameID(frame_id_) {
   if (world) world->add(this);
 }
 
 WorldItem::~WorldItem() {}
 
-/*
- * This is how poseInWorld() is computed for childrens
- * If you need to test this, run it in mrsim_node.cpp
-*/
-//Pose toShow = parentRobotSharedPtr->pose_in_parent.translation + robotSharedPtr->pose_in_parent.translation;
-//toShow.theta = parentRobotSharedPtr->pose_in_parent.theta + robotSharedPtr->pose_in_parent.theta;
-//cout << "Pose in world of child[" << id << "]: " << toShow << endl;
-//cout << "Pose in world of child[" << id << "] poseInWorld(): " << robotSharedPtr->poseInWorld() << endl; // Same as above
-//cout << "-------------------------------------------" << endl;
 Pose WorldItem::poseInWorld() {
   if (!parent) return pose_in_parent;
   return parent->poseInWorld() * pose_in_parent;
@@ -54,8 +45,7 @@ void World::loadFromImage(const string filename)
 
 bool World::collides(const IntPoint &p, const int &radius) const
 {
-  if (!inside(p))
-    return true;
+  if (!inside(p)) return true;
   int r2 = radius * radius;
   for (int r = -radius; r <= radius; ++r)
   {

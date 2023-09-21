@@ -34,7 +34,7 @@
         {
             "id": 2,
             "type": "robot",
-            "frame_id": "frame_robot0",
+            "frame_id": "frame_robot1",
             "namespace": "robot_0/robot_1",
             "radius": 0.2,
             "max_rv": 0.5,
@@ -42,22 +42,22 @@
             "pose": [
                 -0.7,
                 0,
-                0
+                3.141592
             ],
             "parent": 0
         },
         {
             "id": 3,
             "type": "lidar",
-            "frame_id": "frame_lidar0",
+            "frame_id": "frame_lidar1",
             "namespace": "robot_0/robot_1",
             "fov": 3.141592,
-            "max_range": 2.0,
-            "num_beams": 50,
+            "max_range": 3.0,
+            "num_beams": 180,
             "pose": [
-                -0.4,
+                0.4,
                 0,
-                -3.14
+                0
             ],
             "parent": 2
         }

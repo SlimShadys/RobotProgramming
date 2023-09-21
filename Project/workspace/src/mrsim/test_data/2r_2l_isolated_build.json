@@ -34,7 +34,7 @@
         {
             "id": 2,
             "type": "robot",
-            "frame_id": "frame_robot0",
+            "frame_id": "frame_robot1",
             "namespace": "robot_1",
             "radius": 0.15,
             "max_rv": 0.5,
@@ -49,7 +49,7 @@
         {
             "id": 3,
             "type": "lidar",
-            "frame_id": "frame_lidar0",
+            "frame_id": "frame_lidar1",
             "namespace": "robot_1",
             "fov": 3.141592,
             "max_range": 3.0,

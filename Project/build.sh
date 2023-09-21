@@ -9,6 +9,10 @@ dir=$(dirname "$0")
 
 clear
 
+# Source ROS noetic
+source /opt/ros/noetic/setup.bash
+echo "${green}-------- SOURCED ROS NOETIC ---------${normal}"
+
 cd "$dir/workspace"     # Let's enter the workspace
 echo "${green}-------- RUNNING CATKIN_MAKE ---------${normal}"
 catkin_make             # Build the project

@@ -13,7 +13,7 @@ The task is to extend the 2D Robot simulator illustrated during the course by im
 ⚠️ = Work in progress<br>
 ✅ = Done<br>
 
-- Implementing **ROS** Support | ⚠️ (90%)
+- Implementing **ROS** Support | ✅
 - Implementing a configuration system by file | ✅
 - Complete the CMakeLists provided by us | ✅
 
