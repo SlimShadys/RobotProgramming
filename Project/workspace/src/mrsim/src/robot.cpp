@@ -66,8 +66,9 @@ Robot::Robot(int id_, string type_, string frame_id_, string namespace_,
 
 void Robot::draw() {
   int int_radius = radius * world->inv_res;
-  IntPoint p = world->world2grid(poseInWorld().translation);
-  cv::circle(world->_display_image, cv::Point(p.y, p.x), int_radius,
+
+  IntPoint point = world->world2grid(poseInWorld().translation);
+  cv::circle(world->_display_image, cv::Point(point.y, point.x), int_radius,
              cv::Scalar::all(0), -1);
 }
 
@@ -102,42 +103,23 @@ void Robot::timeTick(float dt) {
   odom.header.stamp = ros::Time::now();
   odom.header.frame_id = parentFrameID;
   odom.child_frame_id = frame_id;
-  float res = 0.05;
 
-  Pose motion = Pose();
-
-  if(isChild) {
-    shared_ptr<Robot> robotPointer = std::dynamic_pointer_cast<Robot>(p); // Get the parent
-
-    motion.translation.x = robotPointer->tv * dt;
-    motion.translation.y = 0;
-    motion.theta = robotPointer->rv * dt;
-  } else {
-    motion.translation.x = tv * dt;
-    motion.translation.y = 0;
-    motion.theta = rv * dt;    
-  }
-  
-  Pose next_pose = pose_in_parent * motion;
-  Pose temp = Pose();
+  Pose motion(tv * dt, 0, rv * dt);
+  Pose next_pose(pose_in_parent * motion);
   IntPoint ip = IntPoint();
 
-  // if (isChild) {
-  //   shared_ptr<Robot> robotPointer = std::dynamic_pointer_cast<Robot>(p); // Get the parent
-  //   temp = robotPointer->pose_in_parent;
-  //   temp.translation.x = temp.translation.x + motion.translation.x;
-  //   temp.translation.y = temp.translation.y + motion.translation.y;
-  //   temp.theta = temp.theta + motion.theta;
-  //   ip = world->world2grid(next_pose.translation + temp.translation);
-  // } else {
-  //   ip = world->world2grid(next_pose.translation);
-  // }
-    
-  ip = world->world2grid(next_pose.translation);  
+  // Needed for the children. We want the global coordinates of childrens, if we want to check for any collisions.
+  // Note that next_pose is always equal for childrens, since motion is equal to 0 (tv and rv are updated for parent, not children)
+  if(isChild) {
+    ip = world->world2grid((poseInWorld() * motion).translation);
+  } else {
+    ip = world->world2grid(next_pose.translation);
+  }
+
   int int_radius = radius * world->inv_res;
 
   if (!world->collides(ip, int_radius)) { // We have not collided, so let's update the position
-    pose_in_parent = next_pose;      
+    pose_in_parent = next_pose;
   } else { // We have collided. Here we must implement the collision mechanism for stopping both parent/child, but..
     if(isChild) {
       //cout << "Child collided!" << endl;
@@ -146,41 +128,34 @@ void Robot::timeTick(float dt) {
     }
   }
   
+  // // De-commenting this, properly shows the arrows of the children in RViz, but the pose of the children is broken.
+  // // By commenting this, the arrow on RViz stays fixed, but the children correctly follows the parent.
+  // if(isChild) {
+  //   shared_ptr<Robot> robotPointer = std::dynamic_pointer_cast<Robot>(p); // Get the parent
+
+  //   Pose motionChild = Pose(robotPointer->tv * dt, 0, robotPointer->rv * dt);
+
+  //   pose_in_parent.translation.x = pose_in_parent.translation.x + motionChild.translation.x;
+  //   pose_in_parent.translation.y = pose_in_parent.translation.y + motionChild.translation.y;
+  //   pose_in_parent.theta = pose_in_parent.theta + motionChild.theta;
+  // }
+
   geometry_msgs::Quaternion geometry_quaternion;
+  tf2::Quaternion tf_quaternion;
 
-  if(isChild) {
+  tf_quaternion.setRPY(0.0, 0.0, pose_in_parent.theta);
+  tf_quaternion.normalize();
 
-    shared_ptr<Robot> robotPointer = std::dynamic_pointer_cast<Robot>(p); // Get the parent
+  // Set the components of the geometry_msgs::Quaternion
+  geometry_quaternion.x = tf_quaternion.x();
+  geometry_quaternion.y = tf_quaternion.y();
+  geometry_quaternion.z = tf_quaternion.z();
+  geometry_quaternion.w = tf_quaternion.w();
 
-    tf2::Quaternion tf_quaternion;
-    tf_quaternion.setRPY(0.0, 0.0, pose_in_parent.theta);
-    tf_quaternion.normalize();
+  // Populate the odometry data here (position and orientation)
+  odom.pose.pose.position.x = pose_in_parent.translation.x;
+  odom.pose.pose.position.y = pose_in_parent.translation.y;    
 
-    // Set the components of the geometry_msgs::Quaternion
-    geometry_quaternion.x = tf_quaternion.x();
-    geometry_quaternion.y = tf_quaternion.y();
-    geometry_quaternion.z = tf_quaternion.z();
-    geometry_quaternion.w = tf_quaternion.w();
-
-    // Populate the odometry data here (position and orientation)
-    odom.pose.pose.position.x = (pose_in_parent.translation.x);
-    odom.pose.pose.position.y = (pose_in_parent.translation.y);
-  } else {
-    tf2::Quaternion tf_quaternion;
-    tf_quaternion.setRPY(0.0, 0.0, pose_in_parent.theta);
-    tf_quaternion.normalize();
-
-    // Set the components of the geometry_msgs::Quaternion
-    geometry_quaternion.x = tf_quaternion.x();
-    geometry_quaternion.y = tf_quaternion.y();
-    geometry_quaternion.z = tf_quaternion.z();
-    geometry_quaternion.w = tf_quaternion.w();
-
-    // Populate the odometry data here (position and orientation)
-    odom.pose.pose.position.x = pose_in_parent.translation.x;
-    odom.pose.pose.position.y = pose_in_parent.translation.y;    
-  }
-  
   odom.pose.pose.orientation = geometry_quaternion; // Assuming theta represents orientation
 
   // Publish the Odometry message
@@ -191,12 +166,7 @@ void Robot::timeTick(float dt) {
 
 void Robot::transformRobot() {
   // Get the 2D pose of the robot in world coordinates
-  Pose transformation = Pose();
-  float res = 0.05;
-
-  transformation.translation.x = pose_in_parent.translation.x;
-  transformation.translation.y = pose_in_parent.translation.y;
-  transformation.theta = pose_in_parent.theta;
+  Pose transformation = poseInWorld();
 
   geometry_msgs::TransformStamped transform_stamped;
   transform_stamped.header.stamp = ros::Time::now();
@@ -204,11 +174,6 @@ void Robot::transformRobot() {
   transform_stamped.child_frame_id = frame_id;
 
   /**
-   * We want to create a quaternion that represents the rotation around the z-axis.
-   * We use atan2, which is the correct function to use when we have only one argument
-   * (in this case, transformation.theta).
-   * It calculates the arctangent of the ratio of its two arguments and correctly handles
-   * the case where the denominator is zero. 
    * 
    * This is the right choice for representing 2D rotations.
    * 
@@ -235,6 +200,15 @@ void Robot::transformRobot() {
   transform_stamped.transform.rotation.y = tf_transform.getRotation().y();
   transform_stamped.transform.rotation.z = tf_transform.getRotation().z();
   transform_stamped.transform.rotation.w = tf_transform.getRotation().w();
+
+  // ROS_INFO_STREAM("ID: " << id << " | transform_stamped.transform.translation.x: " << transform_stamped.transform.translation.x);
+  // ROS_INFO_STREAM("ID: " << id << " | transform_stamped.transform.translation.y: " << transform_stamped.transform.translation.y);
+  // ROS_INFO_STREAM("ID: " << id << " | transform_stamped.transform.translation.z: " << transform_stamped.transform.translation.z);
+  // ROS_INFO_STREAM("ID: " << id << " | transform_stamped.transform.rotation.x: " << transform_stamped.transform.rotation.x);
+  // ROS_INFO_STREAM("ID: " << id << " | transform_stamped.transform.rotation.y: " << transform_stamped.transform.rotation.y);
+  // ROS_INFO_STREAM("ID: " << id << " | transform_stamped.transform.rotation.z: " << transform_stamped.transform.rotation.z);
+  // ROS_INFO_STREAM("ID: " << id << " | transform_stamped.transform.rotation.w: " << transform_stamped.transform.rotation.w);
+  // ROS_INFO_STREAM("-----------------------------------------------------------------");
 
   // Create a TransformBroadcaster which will send the transform_stamped we created
   static tf2_ros::TransformBroadcaster br;

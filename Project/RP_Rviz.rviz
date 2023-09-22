@@ -6,9 +6,9 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Grid1
         - /Grid1/Offset1
         - /Odometry_R01/Shape1
+        - /Odometry_R0/11/Status1
       Splitter Ratio: 0.5
     Tree Height: 760
   - Class: rviz/Selection
@@ -23,12 +23,13 @@ Panels:
   - Class: rviz/Views
     Expanded:
       - /Current View1
+      - /Current View1/Focal Point1
     Name: Views
     Splitter Ratio: 0.5
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: LaserScan_R0
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -135,7 +136,7 @@ Visualization Manager:
           Value: true
         Value: true
       Enabled: false
-      Keep: 100
+      Keep: 5
       Name: Odometry_R1
       Position Tolerance: 0.10000000149011612
       Queue Size: 5
@@ -198,7 +199,7 @@ Visualization Manager:
           Value: true
         Value: true
       Enabled: false
-      Keep: 100
+      Keep: 5
       Name: Odometry_R0/1
       Position Tolerance: 0.10000000149011612
       Queue Size: 5
@@ -206,7 +207,7 @@ Visualization Manager:
         Alpha: 1
         Axes Length: 1
         Axes Radius: 0.10000000149011612
-        Color: 255; 25; 0
+        Color: 252; 233; 79
         Head Length: 0.30000001192092896
         Head Radius: 0.10000000149011612
         Shaft Length: 1
@@ -271,7 +272,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 30.877172470092773
+      Distance: 24.800228118896484
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -279,17 +280,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 35.260799407958984
-        Y: 51.38142013549805
-        Z: -2.714017391204834
+        X: 35.33706283569336
+        Y: 51.09575653076172
+        Z: -0.008015804924070835
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.9897968769073486
+      Pitch: 1.0447968244552612
       Target Frame: <Fixed Frame>
-      Yaw: 6.273588180541992
+      Yaw: 6.268589973449707
     Saved:
       - Class: rviz/Orbit
         Distance: 23.97614097595215
@@ -327,5 +328,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1519
-  X: 752
-  Y: 101
+  X: 636
+  Y: 158
