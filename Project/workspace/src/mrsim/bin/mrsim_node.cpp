@@ -2,7 +2,6 @@
 #include <iostream>
 #include <fstream>
 
-#include "world.h"
 #include "robot.h"
 #include "lidar.h"
 #include "misc.h"

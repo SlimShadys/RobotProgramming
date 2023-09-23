@@ -11,15 +11,15 @@ using namespace std;
 
 class Lidar: public WorldItem {
 public:
-  Lidar(float fov_, float max_range_, int num_beams_, shared_ptr<World> w, const Pose& pose_=Pose());
+  Lidar(float fov_, float max_range_, int num_beams_, shared_ptr<World> w, const Pose& pose_ = Pose::Identity());
 
-  Lidar(float fov_, float max_range_, int num_beams_, shared_ptr<WorldItem> p_, const Pose& pose_=Pose());
+  Lidar(float fov_, float max_range_, int num_beams_, shared_ptr<WorldItem> p_, const Pose& pose_ = Pose::Identity());
 
   Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, shared_ptr<World> w, 
-        const Pose& pose_=Pose(), float max_range_ = 10.0, int num_beams_ = 360, int parent_ = -1);
+        const Pose& pose_ = Pose::Identity(), float max_range_ = 10.0, int num_beams_ = 360, int parent_ = -1);
 
   Lidar(int id_, string type_, string frame_id_, string namespace_, float fov_, shared_ptr<WorldItem> p_, 
-        const Pose& pose_=Pose(), float max_range_ = 10.0, int num_beams_ = 360, int parent_ = -1);
+        const Pose& pose_ = Pose::Identity(), float max_range_ = 10.0, int num_beams_ = 360, int parent_ = -1);
 
   ~Lidar();
 
