@@ -44,7 +44,7 @@ class World {
   int size = 0;
   float res = 0.05, inv_res = 20.0;
 
-  string worldFrameID = "map";
+  string worldFrameID = "odom";
 
   vector<WorldItem*> _items;
   vector<uint8_t> grid;

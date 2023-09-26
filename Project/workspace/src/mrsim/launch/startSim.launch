@@ -1,0 +1,11 @@
+<launch>
+
+    <arg name="json"/>
+
+    <node pkg="mrsim" name="mrsim" type="mrsim_node" args="$(arg json)"/>
+    
+    <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_static_transform" args="0 0 0 0 0 0 map odom" />
+
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find mrsim)/rviz/RP_Rviz.rviz" />
+
+</launch>

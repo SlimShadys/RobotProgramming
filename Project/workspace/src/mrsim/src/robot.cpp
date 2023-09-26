@@ -133,19 +133,6 @@ void Robot::timeTick(float dt) {
     }
   }
   
-  // De-commenting this, properly shows the arrows of the children in RViz, but the pose of the children is broken.
-  // By commenting this, the arrow on RViz stays fixed, but the children correctly follows the parent.
-  // if(isChild) {
-  //   shared_ptr<Robot> robotPointer = std::dynamic_pointer_cast<Robot>(p); // Get the parent
-
-  //   Pose motionChild = Pose::Identity();
-  //   motionChild.translate(Point(robotPointer->tv * dt, 0));
-  //   motionChild.rotate(robotPointer->rv * dt);
-
-  //   pose_in_parent.translate(Point(pose_in_parent.translation().x() + motionChild.translation().x(), pose_in_parent.translation().y() + motionChild.translation().y()));
-  //   pose_in_parent.rotate(Rotation(pose_in_parent.linear()).angle() + Rotation(motionChild.linear()).angle());
-  // }
-
   geometry_msgs::Quaternion geometry_quaternion;
   tf2::Quaternion tf_quaternion;
 
@@ -172,7 +159,7 @@ void Robot::timeTick(float dt) {
 
 void Robot::transformRobot() {
   // Get the 2D pose of the robot in world coordinates
-  Pose transformation = pose_in_parent;
+  Pose transformation = poseInWorld();
 
   geometry_msgs::TransformStamped transform_stamped;
   transform_stamped.header.stamp = ros::Time::now();

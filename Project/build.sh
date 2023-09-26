@@ -20,4 +20,5 @@ catkin_make             # Build the project
 echo "${green}-------- SOURCING THE WORKSPACE ---------${normal}"
 source devel/setup.sh   # Source the workspace
 echo "Workspace successfully sourced. Now you can run ROS nodes :)"
+echo "Example: roslaunch mrsim startSim.launch json:='2r_2l_isolated_build.json'"
 echo "${green}-----------------------------------------${normal}"
